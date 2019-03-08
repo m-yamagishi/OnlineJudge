@@ -24,7 +24,7 @@ app.post('/api/run', function (req, res) {
 		execCmd = 'cc -Wall -o Main Main.c && ./Main';
 	} else if (language === 'java') {
 		filename = 'Main.java';
-		execCmd = 'javac Main.java && java Main'	
+		execCmd = 'javac Main.java && java Main ' + input	
 	}
 
 	//Create a container
