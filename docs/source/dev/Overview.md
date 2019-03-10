@@ -15,11 +15,23 @@
 - curl
 - vscode(javaの実行環境)
 - mongoDB
+- WSL;Windows SUbsystem for Linux
+	- シス管系女子 https://system-admin-girl.com/comic/begins/sp-wsl/
+	- https://qiita.com/tettsu__/items/85c96850d187e4386c24
+	- 海外サーバリポジトリから日本サーバへの切り替え https://qiita.com/Aruneko/items/c79810b0b015bebf30bb
+	- 起動時エラー -> Winwdows Update https://va2577.github.io/post/175/
+- Angular
+	- tutorial https://angular.jp/tutorial/toh-pt0
 
 ## システム構成
+
+*オンラインジャッジサイトはスクリプトでDockerコマンドを実行するためにLinuxカーネル上でサーブする必要がある*
+
 ![](../image/Architecture.svg)
 
 ## 要件一覧
+- Windowsのdockerコンテナでubuntuを起動して,ubunutのdockerコンテナでMongoDB,オンラインジャッジを起動する
+- オンラインジャッジサイトがAngularで構成できる
 - DBでユーザを管理できる
 	- パスワード
 	- ロール
