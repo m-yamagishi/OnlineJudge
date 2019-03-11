@@ -31,15 +31,16 @@ app.post('/api/run', function (req, res) {
 	var dockerCmd =
 		'docker create -i ' +
 		'--net none ' +
-		'--cpuset-cpus 0 ' +
-		'--memory 512m --memory-swap 512m ' +
+		// '--cpuset-cpus 0 ' +
+		// '--memory 512m --memory-swap 512m ' +
 		'--ulimit nproc=10:10 ' +
 		'--ulimit fsize=1000000 ' +
 		'-w /workspace ' +
 		'ubuntu-dev ' +
 		'/usr/bin/time -q -f "%e" -o /time.txt ' +
 		'timeout 3 ' +
-		'su nobody -s /bin/bash -c "' +
+		'su nobody -s ' +
+		'/bin/bash -c "' +
 		execCmd +
 		'"';
 

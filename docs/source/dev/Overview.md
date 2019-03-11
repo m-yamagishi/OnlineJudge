@@ -2,24 +2,35 @@
 - mkdocs
 	- https://qiita.com/mebiusbox2/items/a61d42878266af969e3c
 - Makefile
+- Git,Gthub
 - リポジトリ構造
 	- https://python-guideja.readthedocs.io/ja/latest/writing/structure.html
-- Git,Gthub
-- Junit 4.12
-	- 環境設定とコマンドラインでの実行手順 https://github.com/junit-team/junit4/wiki/Getting-started
-		- `javac Hello/Main.java`
-		- `javac -cp .:junit-4.12.jar:hamcrest-core-1.3.jar Hello/MainTest.java`
-		- `java -cp .:junit-4.12.jar:hamcrest-core-1.3.jar org.junit.runner.JUnitCore Hello.MainTest`
-- Docker
-- ubuntu
-- curl
-- vscode(javaの実行環境)
-- mongoDB
 - WSL;Windows SUbsystem for Linux
 	- シス管系女子 https://system-admin-girl.com/comic/begins/sp-wsl/
 	- https://qiita.com/tettsu__/items/85c96850d187e4386c24
 	- 海外サーバリポジトリから日本サーバへの切り替え https://qiita.com/Aruneko/items/c79810b0b015bebf30bb
 	- 起動時エラー -> Winwdows Update https://va2577.github.io/post/175/
+	- ubuntu
+		- makeのインストール https://www.yokoweb.net/2018/05/04/ubuntu-18_04-gcc-makme-install/
+		- dockerのインストール
+			- https://qiita.com/yanoshi/items/dcecbf117d9cbd14af87
+			- http://www.nuits.jp/entry/docker-on-wsl
+			- docker-cd 17.09.1(docker公式)以降のバージョンはWSLで動かない？ https://qiita.com/guchio/items/3eb0818df44fdbab3d14
+			- 最新dokcerを削除して16.04びインストール https://tech.shiroshika.com/windows10-docker/
+		- グループの一覧 `cat /etc/group`
+		- ユーザにグループを追加する `sudo usermod -aG wheel m-yamagishi`
+		- 指定したユーザに変更する `su`
+- Docker
+	- dockerサービスの起動 `sudo service docker start`
+	- dockerのステータス確認 `sudo service docker status` 
+- Junit 4.12
+	- 環境設定とコマンドラインでの実行手順 https://github.com/junit-team/junit4/wiki/Getting-started
+		- `javac Hello/Main.java`
+		- `javac -cp .:junit-4.12.jar:hamcrest-core-1.3.jar Hello/MainTest.java`
+		- `java -cp .:junit-4.12.jar:hamcrest-core-1.3.jar org.junit.runner.JUnitCore Hello.MainTest`
+- curl
+- vscode(javaの実行環境)
+- mongoDB
 - Angular
 	- tutorial https://angular.jp/tutorial/toh-pt0
 

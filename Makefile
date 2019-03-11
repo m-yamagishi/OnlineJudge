@@ -4,6 +4,8 @@ init:
 	# cd coderunner && npm install
 	# curl -o source/junit-4.12.jar -OL https://github.com/junit-team/junit4/releases/download/r4.12/junit-4.12-sources.jar
 	# curl -o source/hamcrest-core-1.3.jar -OL http://search.maven.org/remotecontent?filepath=org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar
+	sudo apt-get install nodejs
+	sudo apt-get install npm
 	npm install -g @angular/cli
 
 mkbuild:
@@ -19,7 +21,10 @@ crserve:
 	cd coderunner && node app.js
 
 dockerbuild:
-	cd image-ubuntu-dev && docker build -t ubuntu-dev .
+	docker build -t ubuntu-dev .
+
+dockerin:
+	docker run -i -t ubuntu-dev bash
 
 dockertest:
 	docker run -i -t ubuntu-dev ruby --version

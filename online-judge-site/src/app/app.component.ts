@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Tour of Heroes';
+  title = 'Online Judge Site';
+  heroes = 'Heroes';
+  exercise = '問題一覧';
+  regi_exe = '問題登録';
+  user_list = 'ユーザ一覧';
+  login = 'ログイン';
 }

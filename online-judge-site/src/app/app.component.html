@@ -1,7 +1,22 @@
-<h1>{{title}}</h1>
-<nav>
-  <a routerLink="/dashboard">Dashboard</a>
-  <a routerLink="/heroes">Heroes</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+  <a class="navbar-brand" href="/">{{title}}</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarText">
+    <div class="navbar-nav mr-auto">
+      <a class="nav-item nav-link" href="./dashboard">{{dashboard}}</a>
+      <a class="nav-item nav-link" href="./heroes">{{heroes}}</a>
+      <a class="nav-item nav-link" href="#">{{exercise}}</a>
+      <a class="nav-item nav-link" href="#">{{user_list}}</a>
+      <a class="nav-item nav-link" href="#">{{regi_exe}}</a>
+    </div>
+    <div class="navbar-nav navbar-right">
+      <a class="nav-item nav-link" href="#">{{login}}</a>
+    </div>
+  </div>
 </nav>
 <router-outlet></router-outlet>
 <app-messages></app-messages>
