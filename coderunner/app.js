@@ -39,7 +39,7 @@ app.post('/api/run', function (req, res) {
 		'ubuntu-dev ' +
 		'/usr/bin/time -q -f "%e" -o /time.txt ' +
 		'timeout 3 ' +
-		'su nobody -s ' +
+		// 'su nobody -s ' +
 		'/bin/bash -c "' +
 		execCmd +
 		'"';
