@@ -12,6 +12,9 @@ init:
 	# curl -o source/junit-4.12.jar -OL https://github.com/junit-team/junit4/releases/download/r4.12/junit-4.12-sources.jar
 	# curl -o source/hamcrest-core-1.3.jar -OL http://search.maven.org/remotecontent?filepath=org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar
 
+	docker pull mongo
+	docker pull mongo-express
+
 mkbuild:
 	cd docs && mkdocs build
 
@@ -24,13 +27,13 @@ mkdeploy:
 crserve:
 	cd online-judge-server && node app.js
 
-dockerbuild:
+builddockerbuild:
 	cd image-ubuntu-dev && docker build -t ubuntu-dev .
 
-dockerin:
+builddockerin:
 	docker run -i -t ubuntu-dev bash
 
-dockertest:
+builddockertest:
 	docker run -i -t ubuntu-dev ruby --version
 	docker run -i -t ubuntu-dev java -version
 	curl -X POST -d 'language=ruby&source_code=puts+111&input=' \
@@ -55,9 +58,37 @@ siteserve:
 sitebuild:
 	cd online-judge-site && npm rum build --prod
 
-savesitemodule:
+sitesave:
 	# cd online-judge-site && sudo npm install angular-in-memory-web-api --save
 	cd online-judge-site && npm install --save bootstrap && npm install --save jquery popper.js
 	cd online-judge-site && npm install --save ag-grid ag-grid-angular ag-grid-community
 	cd online-judge-site && npm install --save ngx-monaco-editor
 	cd online-judge-site && npm install --save ngx-md
+
+sitedockerbuild:
+	cd online-judge-site && docker build -t onlinejudge_judgesite .
+
+sitedockerrun:
+	docker run -it --rm -p 8080:80 onlinejudge_judgesite
+
+mongodockerrun:
+	docker run -it --rm \
+	--name mongo \
+	-p 27017:27017 \
+	-v /mnt/mongodb-data:/data/db \
+	-e MONGO_INITDB_ROOT_USERNAME="username" \
+	-e MONGO_INITDB_ROOT_PASSWORD="password" \
+	-d \
+	mongo
+
+mongoexpressdockerrun:
+	docker run -it --rm \
+	--name mongo-express \
+	--link mongo:mongo \
+	-p 8081:8081 \
+	-e ME_CONFIG_MONGODB_ADMINUSERNAME="username" \
+	-e ME_CONFIG_MONGODB_ADMINPASSWORD="password" \
+	-e ME_CONFIG_BASICAUTH_UERNAME="username" \
+	-e ME_CONFIG_BASICAUTH_PASSWORD="password" \
+	-d \
+	mongo-express

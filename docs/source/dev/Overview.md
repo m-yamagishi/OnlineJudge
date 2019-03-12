@@ -20,11 +20,24 @@
 		- グループの一覧 `cat /etc/group`
 		- ユーザにグループを追加する `sudo usermod -aG wheel m-yamagishi`
 		- 指定したユーザに変更する `su`
-- Docker
-	- dockerサービスの起動 `sudo service docker start`
-	- dockerのステータス確認 `sudo service docker status` 
-	- dockerでmean https://qiita.com/SOhtsu/items/da97e60164669e88a6a7
-	- dockerホストとコンテナでバイナリが違う -> scssがビルドできない　https://budougumi0617.github.io/2018/04/04/fail-node-sass-on-docker/
+		- Docker
+			- dockerサービスの起動 `sudo service docker start`
+			- dockerのステータス確認 `sudo service docker status` 
+			- dockerでmean https://qiita.com/SOhtsu/items/da97e60164669e88a6a7
+			- dockerホストとコンテナでバイナリが違う -> scssがビルドできない　https://budougumi0617.github.io/2018/04/04/fail-node-sass-on-docker/
+			- docker on ubuntu on wslでiptablesが使用できない.`docker-compose up`でエラーが起こる https://stackoverflow.com/questions/48072873/running-docker-compose-on-windows-ubuntu-subsystem
+			- dockerコマンドからdocker-composeへ変換 http://developer.cybozu.co.jp/akky/2016/09/composerize-convert-docker-command-to-compose/
+			- lifecycle https://medium.com/@nagarwal/lifecycle-of-docker-container-d2da9f85959
+			- dockerコマンド`build``create``run`
+			- コンテナの一括削除 `docker rm $(docker ps -aq)` https://qiita.com/ozhaan/items/9e2090da22ffd6c7ad2a
+			- コンテナ終了後コンテナを削除 `--rm` https://qiita.com/hoshino/items/9545d255cc0103b3d296
+			- mean
+				- mongoDB
+				- Express
+					- mongo-expressの起動コマンド https://hub.docker.com/_/mongo-express
+
+![](https://cdn-images-1.medium.com/max/2600/1*vca4e-SjpzSL5H401p4LCg.png)
+
 - Junit 4.12
 	- 環境設定とコマンドラインでの実行手順 https://github.com/junit-team/junit4/wiki/Getting-started
 		- `javac Hello/Main.java`
@@ -32,11 +45,8 @@
 		- `java -cp .:junit-4.12.jar:hamcrest-core-1.3.jar org.junit.runner.JUnitCore Hello.MainTest`
 - curl
 - vscode(javaの実行環境)
-- mean
-	- mongoDB
-	- Express
-	- Angular
 		- tutorial https://angular.jp/tutorial/toh-pt0
+- Angular
 
 ## システム構成
 
