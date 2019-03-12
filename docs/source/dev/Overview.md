@@ -31,6 +31,7 @@
 - curl
 - vscode(javaの実行環境)
 - mongoDB
+- Express
 - Angular
 	- tutorial https://angular.jp/tutorial/toh-pt0
 
@@ -43,6 +44,7 @@
 ## 要件一覧
 - Windowsのdockerコンテナでubuntuを起動して,ubunutのdockerコンテナでMongoDB,オンラインジャッジを起動する
 - オンラインジャッジサイトがAngularで構成できる
+- node(Express)で起動下サーバをローカルPC以外からアクセスできる
 - DBでユーザを管理できる
 	- パスワード
 	- ロール
