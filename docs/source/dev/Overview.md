@@ -23,6 +23,8 @@
 - Docker
 	- dockerサービスの起動 `sudo service docker start`
 	- dockerのステータス確認 `sudo service docker status` 
+	- dockerでmean https://qiita.com/SOhtsu/items/da97e60164669e88a6a7
+	- dockerホストとコンテナでバイナリが違う -> scssがビルドできない　https://budougumi0617.github.io/2018/04/04/fail-node-sass-on-docker/
 - Junit 4.12
 	- 環境設定とコマンドラインでの実行手順 https://github.com/junit-team/junit4/wiki/Getting-started
 		- `javac Hello/Main.java`
@@ -30,10 +32,11 @@
 		- `java -cp .:junit-4.12.jar:hamcrest-core-1.3.jar org.junit.runner.JUnitCore Hello.MainTest`
 - curl
 - vscode(javaの実行環境)
-- mongoDB
-- Express
-- Angular
-	- tutorial https://angular.jp/tutorial/toh-pt0
+- mean
+	- mongoDB
+	- Express
+	- Angular
+		- tutorial https://angular.jp/tutorial/toh-pt0
 
 ## システム構成
 

@@ -1,13 +1,16 @@
 init:
 	# pip install --upgrade pip
 	# pip install -r requirements.txt
-	# curl -o source/junit-4.12.jar -OL https://github.com/junit-team/junit4/releases/download/r4.12/junit-4.12-sources.jar
-	# curl -o source/hamcrest-core-1.3.jar -OL http://search.maven.org/remotecontent?filepath=org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar
+
 	sudo apt-get install nodejs
 	sudo apt-get install npm
+	sudo apt install docker-compose
 	npm install -g @angular/cli
 	# cd coderunner && npm install
 	# cd online-judge-site && npm install
+
+	# curl -o source/junit-4.12.jar -OL https://github.com/junit-team/junit4/releases/download/r4.12/junit-4.12-sources.jar
+	# curl -o source/hamcrest-core-1.3.jar -OL http://search.maven.org/remotecontent?filepath=org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar
 
 mkbuild:
 	cd docs && mkdocs build
@@ -19,10 +22,10 @@ mkdeploy:
 	cd docs && mkdocs gh-deploy
 
 crserve:
-	cd coderunner && node app.js
+	cd online-judge-server && node app.js
 
 dockerbuild:
-	docker build -t ubuntu-dev .
+	cd image-ubuntu-dev && docker build -t ubuntu-dev .
 
 dockerin:
 	docker run -i -t ubuntu-dev bash
@@ -48,6 +51,9 @@ hellotest:
 
 siteserve:
 	cd online-judge-site && ng serve --port 4649
+
+sitebuild:
+	cd online-judge-site && npm rum build --prod
 
 savesitemodule:
 	# cd online-judge-site && sudo npm install angular-in-memory-web-api --save
