@@ -27,10 +27,10 @@ mkdeploy:
 crserve:
 	cd online-judge-server && node app.js
 
-builddockerbuild:
+ubuntudockerbuild:
 	cd image-ubuntu-dev && docker build -t ubuntu-dev .
 
-builddockerin:
+ubuntudockerin:
 	docker run -i -t ubuntu-dev bash
 
 builddockertest:

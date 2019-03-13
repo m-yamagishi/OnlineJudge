@@ -8,7 +8,7 @@ function runCode() {
 	var source_code = aceEditor.getValue();
 	var input = $("#input").val();
 	$.ajax({
-		url: "/api/run",
+		url: "/api/v1/run",
 		method: "POST",
 		data: {
 			language: language,
