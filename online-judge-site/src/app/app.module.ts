@@ -6,9 +6,6 @@ import { HttpClientModule }    from '@angular/common/http';
 import { AgGridModule } from 'ag-grid-angular';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from './services/in-memory-data.service';
-
 import { AppRoutingModule }     from './app-routing.module';
 import { UiModule } from './ui/ui.module';
 
@@ -28,13 +25,6 @@ import { AddcontestComponent } from './components/addcontest/addcontest.componen
     AppRoutingModule,
     HttpClientModule,
     UiModule,
-
-    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
-    // and returns simulated server responses.
-    // Remove it when a real server is ready to receive requests.
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    ),
     AgGridModule.withComponents(
       [ContestsComponent]
     ),

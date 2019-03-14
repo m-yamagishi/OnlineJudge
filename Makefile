@@ -53,7 +53,7 @@ hellotest:
 	make junit ARG=Hello
 
 siteserve:
-	cd online-judge-site && ng serve --port 4649
+	cd online-judge-site && ng serve --port 4649 --host 0.0.0.0
 
 sitebuild:
 	cd online-judge-site && npm rum build --prod

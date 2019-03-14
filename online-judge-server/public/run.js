@@ -10,11 +10,12 @@ function runCode() {
 	$.ajax({
 		url: "/api/v1/run",
 		method: "POST",
-		data: {
+		contentType: "application/json",
+		data: JSON.stringify({
 			language: language,
 			source_code: source_code,
 			input: input,
-		},
+		}),
 	}).done(function (result) {
 		$("#stdout").text(result.stdout);
 		$("#stderr").text(result.stderr);

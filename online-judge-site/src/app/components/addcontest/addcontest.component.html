@@ -13,7 +13,7 @@
   <ngx-monaco-editor [options]="options" [(ngModel)]="answerCode"></ngx-monaco-editor>
   <br />
   <h5>{{standardInputLabel}}</h5>
-	<textarea class="textbox" [(ngModel)]="standardInput"></textarea>
+	<textarea class="textbox" [(ngModel)]="ansStandardInput"></textarea>
   <button type="button" class="btn btn-secondary" (click)="runAns()">{{exeLabel}}</button>
   <button type="button" class="btn btn-secondary" (click)="fixAns()">{{fixLabel}}</button>
   <br />

@@ -45,11 +45,14 @@
 - expressjs
 	- Router http://expressjs.com/ja/api.html
 	- APIをルーティングして処理別のjsをつくる https://qiita.com/leafia78/items/73cc7160d002a4989416
+	- サーバでCORSを許可 https://qiita.com/n0bisuke/items/b9c59a0b99b5851d1612
 - Angular
 	- チュートリアル https://angular.jp/tutorial
 	- コンポーネントの作成 `ng generate component heroes`
 	- ag-grid https://qiita.com/minase_tetsuya/items/0bf6b9f9376e99b29488
-
+	- サーブした時に同じネットワークの他のデバイスからアクセス可能にする https://qiita.com/agajo/items/f0474610a233d6844dda
+	- チュートリアル後にはhttpの接続がInMemoryDataServiceになっているので通信できない https://www.virtual-surfer.com/entry/2018/06/06/190000
+	- Angularとexpressのhttp通信は,クライアントから`Content-Type:application/json`を指定し,サーバのパーサは`bodyParser.json()`を使う https://github.com/angular/angular/issues/19535
 - Junit 4.12
 	- 環境設定とコマンドラインでの実行手順 https://github.com/junit-team/junit4/wiki/Getting-started
 		- `javac Hello/Main.java`

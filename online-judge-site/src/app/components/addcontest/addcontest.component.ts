@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-addcontest',
@@ -52,13 +53,26 @@ export class AddcontestComponent implements OnInit {
   registerLabel = '問題を登録する';
   removeLabel = '問題を取り消す';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
   }
 
   runAns() {
-    console.info('run answer code')
+    var body = {
+      language: 'java',
+      source_code: this.answerCode,
+      input: this.ansStandardInput || ''
+    };
+    var headers = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.post('http://localhost:3000/api/v1/run', body, {headers: headers}).subscribe(res => {
+      this.ansStandardOutput = res['stdout'];
+      this.ansStandardError = res['stderr'];
+      this.ansExeTime = res['time'];
+      this.ansExitCode = res['exit_code'];
+    });
+    //同期処理
+    //エラー時
   }
 
   fixAns() {
