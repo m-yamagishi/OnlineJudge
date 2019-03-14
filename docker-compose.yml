@@ -18,9 +18,8 @@ services:
     build:
       context: ./online-judge-server
       dockerfile: Dockerfile
-    restart: always
     ports:
-      - "3000:3000"
+      - "3001:3000"
     networks:
       - webnet
     depends_on:

@@ -28,7 +28,11 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/ag-grid/dist/styles/ag-grid.css",
+              "node_modules/ag-grid/dist/styles/ag-theme-balham.css",
+              "node_modules/ag-grid/dist/styles/ag-theme-material.css",
+              "node_modules/ag-grid/dist/styles/ag-theme-bootstrap.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.slim.min.js",
@@ -90,7 +94,11 @@
             "karmaConfig": "src/karma.conf.js",
             "styles": [
               "src/styles.scss",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/ag-grid/dist/styles/ag-grid.css",
+              "node_modules/ag-grid/dist/styles/ag-theme-balham.css",
+              "node_modules/ag-grid/dist/styles/ag-theme-material.css",
+              "node_modules/ag-grid/dist/styles/ag-theme-bootstrap.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.slim.min.js",

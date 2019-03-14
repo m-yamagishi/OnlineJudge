@@ -1,0 +1,16 @@
+<app-layout>
+	<h2>{{contestList}}</h2>
+	<!-- <div>
+		Selection:
+		<span id="selectedRows"></span>
+	</div> -->
+	<ag-grid-angular
+		style="height: 300px;width: 100%;"
+		class="ag-theme-material"
+		[rowData]="rowData"
+		[columnDefs]="columnDefs"
+		[rowSelection]="rowSelection"
+		(selectionChanged)="onSelectionChanged($event)"
+		(gridReady)="onGridReady($event)">
+	</ag-grid-angular>
+</app-layout>
