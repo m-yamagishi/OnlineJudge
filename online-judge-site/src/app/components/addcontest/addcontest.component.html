@@ -5,28 +5,45 @@
   <br />
   <br />
   <h2>{{questionTitle}}</h2>
-  <textarea rows="5" cols="80" [ngModel]="question"></textarea>
+  <textarea class="textbox" [ngModel]="question"></textarea>
   <br />
   <br />
   <h2>{{answerCodeTitle}}</h2> 
   <div>{{answerCodeDescription}}</div>
   <ngx-monaco-editor [options]="options" [(ngModel)]="answerCode"></ngx-monaco-editor>
-  <button type="button" class="btn btn-secondary" (click)="runAns()">実行する</button>
-  <button type="button" class="btn btn-secondary" (click)="fixAns()">修正する</button>
-  <button type="button" class="btn btn-secondary" (click)="addAns()">解答を登録する</button>
   <br />
+  <h5>{{standardInputLabel}}</h5>
+	<textarea class="textbox" [(ngModel)]="standardInput"></textarea>
+  <button type="button" class="btn btn-secondary" (click)="runAns()">{{exeLabel}}</button>
+  <button type="button" class="btn btn-secondary" (click)="fixAns()">{{fixLabel}}</button>
   <br />
+  <h5>{{standardOutputLabel}}</h5>
+  <pre><div class="result-area">{{ansStandardOutput}}</div></pre>
   <br />
+  <h5>{{standardErrorLabel}}</h5>  
+	<pre><div class="result-area">{{ansStandardError}}</div></pre>
+  <br />
+  <h5>{{exeTimeLabel}}</h5>
+	<div class="result-area">{{ansExeTime}}</div>
+  <br />
+  <h5>{{exitCodeLabel}}</h5>  
+	<div class="result-area">{{ansExitCode}}</div>
   <br />
   <h2>{{testCodeTitle}}</h2>
   <div>{{testCodeDescription}}</div>
   <ngx-monaco-editor [options]="options" [(ngModel)]="testCode"></ngx-monaco-editor>
-  <button type="button" class="btn btn-secondary" (click)="runTest()">実行する</button>
-  <button type="button" class="btn btn-secondary" (click)="fixTest()">修正する</button>
+  <button type="button" class="btn btn-secondary" (click)="runTest()">{{exeLabel}}</button>
+  <button type="button" class="btn btn-secondary" (click)="fixTest()">{{fixLabel}}</button>
+  <h5>{{standardOutputLabel}}</h5>
+  <pre><div class="result-area">{{testStandardOutput}}</div></pre>
+  <br />
+  <h5>{{standardErrorLabel}}</h5>  
+	<pre><div class="result-area">{{testStandardError}}</div></pre>
+  <br />
+  <h5>{{exitCodeLabel}}</h5>  
+	<div class="result-area">{{testExitCode}}</div>
   <br />
   <br />
-  <br />
-  <br />
-  <button type="button" class="btn btn-primary" (click)="addContest()">問題を登録する</button>
-  <button type="button" class="btn btn-danger" (click)="rmContest()">問題を取り消す</button>
+  <button type="button" class="btn btn-primary" (click)="addContest()">{{registerLabel}}</button>
+  <button type="button" class="btn btn-danger" (click)="rmContest()">{{removeLabel}}</button>
 </app-layout>

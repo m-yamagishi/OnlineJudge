@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { Hero } from './hero';
+import { Hero } from '../models/hero';
 import { MessageService } from './message.service';
 
 const httpOptions = {
@@ -14,27 +14,27 @@ const httpOptions = {
 @Injectable({ providedIn: 'root' })
 export class HeroService {
 
-  private heroesUrl = 'api/heroes';  // URL to web api
+  private heroesUrl = 'api/heroes';  // Web APIのURL
 
   constructor(
     private http: HttpClient,
     private messageService: MessageService) { }
 
-  /** GET heroes from the server */
+  /** サーバーからヒーローを取得する */
   getHeroes (): Observable<Hero[]> {
     return this.http.get<Hero[]>(this.heroesUrl)
       .pipe(
-        tap(_ => this.log('fetched heroes')),
+        tap(heroes => this.log('fetched heroes')),
         catchError(this.handleError('getHeroes', []))
       );
   }
 
-  /** GET hero by id. Return `undefined` when id not found */
+  /** IDによりヒーローを取得する。idが見つからない場合は`undefined`を返す。 */
   getHeroNo404<Data>(id: number): Observable<Hero> {
     const url = `${this.heroesUrl}/?id=${id}`;
     return this.http.get<Hero[]>(url)
       .pipe(
-        map(heroes => heroes[0]), // returns a {0|1} element array
+        map(heroes => heroes[0]), // {0|1} 要素の配列を返す
         tap(h => {
           const outcome = h ? `fetched` : `did not find`;
           this.log(`${outcome} hero id=${id}`);
@@ -43,7 +43,7 @@ export class HeroService {
       );
   }
 
-  /** GET hero by id. Will 404 if id not found */
+  /** IDによりヒーローを取得する。見つからなかった場合は404を返却する。 */
   getHero(id: number): Observable<Hero> {
     const url = `${this.heroesUrl}/${id}`;
     return this.http.get<Hero>(url).pipe(
@@ -52,10 +52,10 @@ export class HeroService {
     );
   }
 
-  /* GET heroes whose name contains search term */
+  /* 検索語を含むヒーローを取得する */
   searchHeroes(term: string): Observable<Hero[]> {
     if (!term.trim()) {
-      // if not search term, return empty hero array.
+      // 検索語がない場合、空のヒーロー配列を返す
       return of([]);
     }
     return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
@@ -66,7 +66,7 @@ export class HeroService {
 
   //////// Save methods //////////
 
-  /** POST: add a new hero to the server */
+  /** POST: サーバーに新しいヒーローを登録する */
   addHero (hero: Hero): Observable<Hero> {
     return this.http.post<Hero>(this.heroesUrl, hero, httpOptions).pipe(
       tap((newHero: Hero) => this.log(`added hero w/ id=${newHero.id}`)),
@@ -74,7 +74,7 @@ export class HeroService {
     );
   }
 
-  /** DELETE: delete the hero from the server */
+  /** DELETE: サーバーからヒーローを削除 */
   deleteHero (hero: Hero | number): Observable<Hero> {
     const id = typeof hero === 'number' ? hero : hero.id;
     const url = `${this.heroesUrl}/${id}`;
@@ -85,7 +85,7 @@ export class HeroService {
     );
   }
 
-  /** PUT: update the hero on the server */
+  /** PUT: サーバー上でヒーローを更新 */
   updateHero (hero: Hero): Observable<any> {
     return this.http.put(this.heroesUrl, hero, httpOptions).pipe(
       tap(_ => this.log(`updated hero id=${hero.id}`)),
@@ -94,26 +94,26 @@ export class HeroService {
   }
 
   /**
-   * Handle Http operation that failed.
-   * Let the app continue.
-   * @param operation - name of the operation that failed
-   * @param result - optional value to return as the observable result
+   * 失敗したHttp操作を処理します。
+   * アプリを持続させます。
+   * @param operation - 失敗した操作の名前
+   * @param result - observableな結果として返す任意の値
    */
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
+      // TODO: リモート上のロギング基盤にエラーを送信する
+      console.error(error); // かわりにconsoleに出力
 
-      // TODO: better job of transforming error for user consumption
+      // TODO: ユーザーへの開示のためにエラーの変換処理を改善する
       this.log(`${operation} failed: ${error.message}`);
 
-      // Let the app keep running by returning an empty result.
+      // 空の結果を返して、アプリを持続可能にする
       return of(result as T);
     };
   }
 
-  /** Log a HeroService message with the MessageService */
+  /** HeroServiceのメッセージをMessageServiceを使って記録 */
   private log(message: string) {
     this.messageService.add(`HeroService: ${message}`);
   }
