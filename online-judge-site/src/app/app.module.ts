@@ -3,6 +3,7 @@ import { BrowserModule }  from '@angular/platform-browser';
 import { FormsModule }    from '@angular/forms';
 import { HttpClientModule }    from '@angular/common/http';
 
+import { NgxMdModule } from 'ngx-md';
 import { AgGridModule } from 'ag-grid-angular';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 
@@ -18,6 +19,14 @@ import { HomeComponent } from './components/home/home.component';
 import { ContestsComponent } from './components/contests/contests.component';
 import { AddcontestComponent } from './components/addcontest/addcontest.component';
 
+import { MatProgressSpinnerModule, MatSpinner } from '@angular/material/progress-spinner';
+import { OverlayModule } from '@angular/cdk/overlay';
+
+import 'prismjs/components/prism-java';
+import 'prismjs/components/prism-python';
+import 'prismjs/components/prism-csharp';
+import 'prismjs/components/prism-javascript';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -25,10 +34,16 @@ import { AddcontestComponent } from './components/addcontest/addcontest.componen
     AppRoutingModule,
     HttpClientModule,
     UiModule,
+    NgxMdModule.forRoot(),
+    MonacoEditorModule.forRoot(),
     AgGridModule.withComponents(
       [ContestsComponent]
     ),
-    MonacoEditorModule.forRoot()
+    MatProgressSpinnerModule,
+    OverlayModule            
+  ],
+  entryComponents: [
+    MatSpinner
   ],
   declarations: [
     AppComponent,

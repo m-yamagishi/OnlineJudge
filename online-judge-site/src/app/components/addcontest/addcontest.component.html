@@ -10,12 +10,15 @@
   <br />
   <h2>{{answerCodeTitle}}</h2> 
   <div>{{answerCodeDescription}}</div>
-  <ngx-monaco-editor [options]="options" [(ngModel)]="answerCode"></ngx-monaco-editor>
+  <ngx-monaco-editor class="code-area" [options]="options" [(ngModel)]="answerCode" [hidden]="answerCodeCompleted"></ngx-monaco-editor>
+  <div class="code-area" [hidden]="!answerCodeCompleted">
+    <ngx-md [data]="answerCodeMd"></ngx-md>
+  </div>
   <br />
   <h5>{{standardInputLabel}}</h5>
-	<textarea class="textbox" [(ngModel)]="ansStandardInput"></textarea>
-  <button type="button" class="btn btn-secondary" (click)="runAns()">{{exeLabel}}</button>
-  <button type="button" class="btn btn-secondary" (click)="fixAns()">{{fixLabel}}</button>
+	<textarea class="textbox" [(ngModel)]="ansStandardInput" [readonly]="answerCodeCompleted"></textarea>
+  <button type="button" class="btn btn-secondary" (click)="runAns()" [disabled]="answerCodeCompleted">{{exeLabel}}</button>
+  <button type="button" class="btn btn-secondary" (click)="fixAns()" [disabled]="!answerCodeCompleted">{{fixLabel}}</button>
   <br />
   <h5>{{standardOutputLabel}}</h5>
   <pre><div class="result-area">{{ansStandardOutput}}</div></pre>

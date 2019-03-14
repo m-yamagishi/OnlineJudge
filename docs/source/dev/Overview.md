@@ -53,6 +53,9 @@
 	- サーブした時に同じネットワークの他のデバイスからアクセス可能にする https://qiita.com/agajo/items/f0474610a233d6844dda
 	- チュートリアル後にはhttpの接続がInMemoryDataServiceになっているので通信できない https://www.virtual-surfer.com/entry/2018/06/06/190000
 	- Angularとexpressのhttp通信は,クライアントから`Content-Type:application/json`を指定し,サーバのパーサは`bodyParser.json()`を使う https://github.com/angular/angular/issues/19535
+	- http通信のコールバック(エラーハンドリング) https://angular.io/guide/http
+	- マークダウンの記述 `<ngx-md>` https://www.npmjs.com/package/ngx-md
+	- スピナーの実装 https://qiita.com/shinoshu/items/9d9480d1499c14d2d6d0
 - Junit 4.12
 	- 環境設定とコマンドラインでの実行手順 https://github.com/junit-team/junit4/wiki/Getting-started
 		- `javac Hello/Main.java`
