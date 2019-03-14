@@ -4,6 +4,7 @@ import { FormsModule }    from '@angular/forms';
 import { HttpClientModule }    from '@angular/common/http';
 
 import { AgGridModule } from 'ag-grid-angular';
+import { MonacoEditorModule } from 'ngx-monaco-editor';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './in-memory-data.service';
@@ -18,6 +19,7 @@ import { HeroSearchComponent }  from './hero-search/hero-search.component';
 import { MessagesComponent }    from './messages/messages.component';
 import { HomeComponent } from './components/home/home.component';
 import { ContestsComponent } from './components/contests/contests.component';
+import { AddcontestComponent } from './components/addcontest/addcontest.component';
 
 @NgModule({
   imports: [
@@ -35,7 +37,8 @@ import { ContestsComponent } from './components/contests/contests.component';
     ),
     AgGridModule.withComponents(
       [ContestsComponent]
-    )
+    ),
+    MonacoEditorModule.forRoot()
   ],
   declarations: [
     AppComponent,
@@ -44,7 +47,8 @@ import { ContestsComponent } from './components/contests/contests.component';
     MessagesComponent,
     HeroSearchComponent,
     HomeComponent,
-    ContestsComponent
+    ContestsComponent,
+    AddcontestComponent
   ],
   bootstrap: [ AppComponent ]
 })

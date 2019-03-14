@@ -1,0 +1,32 @@
+<app-layout>
+  <h2>{{packageNameTitle}}</h2>
+  <div>{{packageNameDescription}}</div>
+  <input type="text" [ngModel]="packageName" />
+  <br />
+  <br />
+  <h2>{{questionTitle}}</h2>
+  <textarea rows="5" cols="80" [ngModel]="question"></textarea>
+  <br />
+  <br />
+  <h2>{{answerCodeTitle}}</h2> 
+  <div>{{answerCodeDescription}}</div>
+  <ngx-monaco-editor [options]="options" [(ngModel)]="answerCode"></ngx-monaco-editor>
+  <button type="button" class="btn btn-secondary" (click)="runAns()">実行する</button>
+  <button type="button" class="btn btn-secondary" (click)="fixAns()">修正する</button>
+  <button type="button" class="btn btn-secondary" (click)="addAns()">解答を登録する</button>
+  <br />
+  <br />
+  <br />
+  <br />
+  <h2>{{testCodeTitle}}</h2>
+  <div>{{testCodeDescription}}</div>
+  <ngx-monaco-editor [options]="options" [(ngModel)]="testCode"></ngx-monaco-editor>
+  <button type="button" class="btn btn-secondary" (click)="runTest()">実行する</button>
+  <button type="button" class="btn btn-secondary" (click)="fixTest()">修正する</button>
+  <br />
+  <br />
+  <br />
+  <br />
+  <button type="button" class="btn btn-primary" (click)="addContest()">問題を登録する</button>
+  <button type="button" class="btn btn-danger" (click)="rmContest()">問題を取り消す</button>
+</app-layout>
