@@ -67,6 +67,7 @@
 - node.js
 	- fs ファイルコピー https://qiita.com/tadnakam/items/6b6e0da5bb05c86bd573
 	- https://qiita.com/PianoScoreJP/items/ec3d1b64d5e3a3bfa3b4
+	- npmパッケージをバージン指定してインストール https://qiita.com/448jp/items/58c5cbd5576c07177b8d
 - Junit 4.12
 	- 環境設定とコマンドラインでの実行手順 https://github.com/junit-team/junit4/wiki/Getting-started
 		- `javac Hello/Main.java`
