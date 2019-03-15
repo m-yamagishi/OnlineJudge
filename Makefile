@@ -29,7 +29,7 @@ ubuntudockerbuild:
 	cd image-ubuntu-dev && docker build -t ubuntu-dev .
 
 ubuntudockerin:
-	docker run -i -t ubuntu-dev bash
+	docker run -it -w /workspace ubuntu-dev bash
 
 builddockertest:
 	docker run -i -t ubuntu-dev ruby --version
@@ -55,6 +55,7 @@ sitesave:
 	cd online-judge-site && npm install --save ag-grid ag-grid-angular ag-grid-community
 	cd online-judge-site && npm install --save ngx-monaco-editor
 	cd online-judge-site && npm install --save ngx-md
+	cd online-judge-site && npm install --save @ng-bootstrap/ng-bootstrap
 	cd online-judge-site && ng add @angular/material
 
 siteserve:

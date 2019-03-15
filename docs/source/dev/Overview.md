@@ -61,6 +61,12 @@
 	- http通信のコールバック(エラーハンドリング) https://angular.io/guide/http
 	- マークダウンの記述 `<ngx-md>` https://www.npmjs.com/package/ngx-md
 	- スピナーの実装 https://qiita.com/shinoshu/items/9d9480d1499c14d2d6d0
+	- 画像の置き場所 https://www.l08084.com/entry/2018/03/10/172129
+	- ng-bootstrapのインストール https://qiita.com/nirasan/items/72739440d513ba146f37
+	- ng-bootstrapでモーダル https://ng-bootstrap.github.io/#/components/modal/examples
+- node.js
+	- fs ファイルコピー https://qiita.com/tadnakam/items/6b6e0da5bb05c86bd573
+	- https://qiita.com/PianoScoreJP/items/ec3d1b64d5e3a3bfa3b4
 - Junit 4.12
 	- 環境設定とコマンドラインでの実行手順 https://github.com/junit-team/junit4/wiki/Getting-started
 		- `javac Hello/Main.java`

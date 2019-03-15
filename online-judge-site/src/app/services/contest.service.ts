@@ -7,7 +7,6 @@ import { Contest } from '../models/contest';
   providedIn: 'root'
 })
 export class ContestService {
-
   private url = 'http://localhost:3000/api/v1/contests';
   private headers = new HttpHeaders().set('Content-Type', 'application/json');
   
@@ -19,5 +18,9 @@ export class ContestService {
 
   getContest(id: string) {
     return this.http.get(this.url + '/' + id, {headers: this.headers});
+  }
+
+  postContest(body) {
+    return this.http.post(this.url, body, {headers: this.headers});
   }
 }

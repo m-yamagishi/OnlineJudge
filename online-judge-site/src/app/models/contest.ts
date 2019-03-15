@@ -1,4 +1,5 @@
 export class Contest {
+	_id: string;
 	id: number;
 	title: string;
 	packageName: string;

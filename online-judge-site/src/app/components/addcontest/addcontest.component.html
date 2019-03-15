@@ -1,14 +1,29 @@
+<ng-template #confirm let-modal>
+  <div class="modal-body text-center">
+    <h5>{{conformLabel}}</h5>
+    <button type="button" class="btn btn-primary btn-lg" (click)="rmYes()">{{yesLabel}}</button>
+    <button type="button" class="btn btn-secondary btn-lg" (click)="rmNo()">{{noLabel}}</button>
+  </div>
+</ng-template>
+<ng-template #error let-modal>
+  <div class="modal-body text-center">
+    <h5>{{errorMessage}}</h5>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close()">{{closeLabel}}</button>
+  </div>
+</ng-template>
 <app-layout>
-  <h2>{{packageNameTitle}}</h2>
+  <h2>{{packageNameLabel}}</h2>
   <div>{{packageNameDescription}}</div>
-  <input type="text" [ngModel]="packageName" />
+  <input type="text" [(ngModel)]="packageName" [readonly]="allCompleted"/>
   <br />
   <br />
-  <h2>{{questionTitle}}</h2>
-  <textarea class="textbox" [ngModel]="question"></textarea>
+  <h2>{{questionLabel}}</h2>
+  <textarea class="textbox" [(ngModel)]="question" [readonly]="allCompleted"></textarea>
   <br />
   <br />
-  <h2>{{answerCodeTitle}}</h2> 
+  <h2>{{answerCodeLabel}}</h2> 
   <div>{{answerCodeDescription}}</div>
   <ngx-monaco-editor class="code-area" [options]="options" [(ngModel)]="answerCode" [hidden]="answerCodeCompleted"></ngx-monaco-editor>
   <div class="code-area" [hidden]="!answerCodeCompleted">
@@ -16,9 +31,11 @@
   </div>
   <br />
   <h5>{{standardInputLabel}}</h5>
-	<textarea class="textbox" [(ngModel)]="ansStandardInput" [readonly]="answerCodeCompleted"></textarea>
-  <button type="button" class="btn btn-secondary" (click)="runAns()" [disabled]="answerCodeCompleted">{{exeLabel}}</button>
-  <button type="button" class="btn btn-secondary" (click)="fixAns()" [disabled]="!answerCodeCompleted">{{fixLabel}}</button>
+  <textarea class="textbox" [(ngModel)]="ansStandardInput" [readonly]="answerCodeCompleted || allCompleted"></textarea>
+  <div class="text-right">
+    <button type="button" class="btn btn-secondary" (click)="runAns()" [disabled]="answerCodeCompleted || allCompleted">{{exeLabel}}</button>
+    <button type="button" class="btn btn-secondary" (click)="fixAns()" [disabled]="!answerCodeCompleted || allCompleted">{{fixLabel}}</button>
+  </div>
   <br />
   <h5>{{standardOutputLabel}}</h5>
   <pre><div class="result-area">{{ansStandardOutput}}</div></pre>
@@ -35,8 +52,10 @@
   <h2>{{testCodeTitle}}</h2>
   <div>{{testCodeDescription}}</div>
   <ngx-monaco-editor [options]="options" [(ngModel)]="testCode"></ngx-monaco-editor>
-  <button type="button" class="btn btn-secondary" (click)="runTest()">{{exeLabel}}</button>
-  <button type="button" class="btn btn-secondary" (click)="fixTest()">{{fixLabel}}</button>
+  <div class="text-right">
+    <button type="button" class="btn btn-secondary" (click)="runTest(error)" [disabled]="testCodeCompleted || allCompleted">{{exeLabel}}</button>
+    <button type="button" class="btn btn-secondary" (click)="fixTest()" [disabled]="!testCodeCompleted || allCompleted">{{fixLabel}}</button>
+  </div>
   <h5>{{standardOutputLabel}}</h5>
   <pre><div class="result-area">{{testStandardOutput}}</div></pre>
   <br />
@@ -47,6 +66,11 @@
 	<div class="result-area">{{testExitCode}}</div>
   <br />
   <br />
-  <button type="button" class="btn btn-primary" (click)="addContest()">{{registerLabel}}</button>
-  <button type="button" class="btn btn-danger" (click)="rmContest()">{{removeLabel}}</button>
+  <div class="text-right">
+    <button type="button" class="btn btn-primary" (click)="addContest(error)" [disabled]="allCompleted">{{registerLabel}}</button>
+    <button type="button" class="btn btn-danger" (click)="rmContest(confirm)" [disabled]="allCompleted">{{removeLabel}}</button>
+  </div>
+  <ngb-alert type="info" [dismissible]="false" [hidden]="!allCompleted">
+    {{doneMessage}}
+  </ngb-alert>
 </app-layout>

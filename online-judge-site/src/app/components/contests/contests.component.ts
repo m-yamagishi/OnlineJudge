@@ -22,8 +22,8 @@ export class ContestsComponent implements OnInit {
     this.columnDefs = [
       {
         headerName: 'ID',
-        field: 'id',
-        width: 75
+        field: '_id',
+        width: 200
       },{ 
         headerName: 'タイトル',
         field: 'title',
