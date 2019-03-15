@@ -6,6 +6,7 @@ init:
 	sudo apt-get install npm
 	sudo apt install docker-compose
 	npm install -g @angular/cli
+	npm install -g node-dev
 	# cd coderunner && npm install
 	# cd online-judge-site && npm install
 
@@ -23,9 +24,6 @@ mkserve:
 
 mkdeploy:
 	cd docs && mkdocs gh-deploy
-
-crserve:
-	cd online-judge-server && node app.js
 
 ubuntudockerbuild:
 	cd image-ubuntu-dev && docker build -t ubuntu-dev .
@@ -52,24 +50,30 @@ endif
 hellotest:
 	make junit ARG=Hello
 
+sitesave:
+	cd online-judge-site && npm install --save bootstrap && npm install --save jquery popper.js
+	cd online-judge-site && npm install --save ag-grid ag-grid-angular ag-grid-community
+	cd online-judge-site && npm install --save ngx-monaco-editor
+	cd online-judge-site && npm install --save ngx-md
+	cd online-judge-site && ng add @angular/material
+
 siteserve:
 	cd online-judge-site && ng serve --port 4649 --host 0.0.0.0
 
 sitebuild:
 	cd online-judge-site && npm rum build --prod
 
-sitesave:
-	# cd online-judge-site && sudo npm install angular-in-memory-web-api --save
-	cd online-judge-site && npm install --save bootstrap && npm install --save jquery popper.js
-	cd online-judge-site && npm install --save ag-grid ag-grid-angular ag-grid-community
-	cd online-judge-site && npm install --save ngx-monaco-editor
-	cd online-judge-site && npm install --save ngx-md
+sitedockerrun:
+	docker run -it --rm -p 8080:80 onlinejudge_judgesite
 
 sitedockerbuild:
 	cd online-judge-site && docker build -t onlinejudge_judgesite .
 
-sitedockerrun:
-	docker run -it --rm -p 8080:80 onlinejudge_judgesite
+serversave:
+	cd online-judge-server && npm install --save mongodb monk jade
+
+serverserve:
+	cd online-judge-server && node-dev app.js
 
 mongodockerrun:
 	docker run -it --rm \
@@ -92,3 +96,7 @@ mongoexpressdockerrun:
 	-e ME_CONFIG_BASICAUTH_PASSWORD="password" \
 	-d \
 	mongo-express
+
+mongologin:
+	#mongo 「DB名」 -u 「ユーザー名」 -p
+	mongo admin -u username -p

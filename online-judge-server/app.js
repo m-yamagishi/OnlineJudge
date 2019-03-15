@@ -10,17 +10,8 @@ app.use((req, res, next) => {
 
 app.use(express.static('public'));
 app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({
-// 	extended: false
-// }));
 
-var router = require('./routes/v1/');
-app.use('/api/v1/', router)
-app.use('/api/sample', function (req, res) {
-	res.json({
-		message: 'hello from server'
-	});
-})
+app.use('/api/v1/', require('./routes/v1/'))
 
 app.listen(3000, function () {
 	console.log('Listening on port 3000')

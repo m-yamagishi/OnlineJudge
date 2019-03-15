@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Contest } from '../../models/contest';
-import { filter } from 'rxjs/operators';
+import { ContestService } from '../../services/contest.service';
 
 @Component({
   selector: 'app-contests',
@@ -13,32 +13,28 @@ export class ContestsComponent implements OnInit {
   public gridColumnApi;
   public columnDefs;
   public rowSelection;
+  public rowData;
 
-  contests: Contest[];
+  contestListLabel = '問題一覧'
+  addLabel = '問題を追加する'
 
-  rowData = [
-    { id: 0, title: 'hello world!', question: 'xxxx', answerCodePath: '../xxx', testCodePath: '../yyy' },
-    { id: 1, title: 'hello world2', question: 'xxxx', answerCodePath: '../xxx', testCodePath: '../yyy' },
-    { id: 2, title: 'hello world3', question: 'xxxx', answerCodePath: '../xxx', testCodePath: '../yyy' },
-    { id: 3, title: 'hello world4', question: 'xxxx', answerCodePath: '../xxx', testCodePath: '../yyy' },
-    { id: 4, title: 'hello world5', question: 'xxxx', answerCodePath: '../xxx', testCodePath: '../yyy' },
-    { id: 5, title: 'hello world!', question: 'xxxx', answerCodePath: '../xxx', testCodePath: '../yyy' },
-    { id: 6, title: 'hello world2', question: 'xxxx', answerCodePath: '../xxx', testCodePath: '../yyy' },
-    { id: 7, title: 'hello world3', question: 'xxxx', answerCodePath: '../xxx', testCodePath: '../yyy' },
-    { id: 8, title: 'hello world4', question: 'xxxx', answerCodePath: '../xxx', testCodePath: '../yyy' },
-    { id: 9, title: 'hello world5', question: 'xxxx', answerCodePath: '../xxx', testCodePath: '../yyy' },
-    { id: 10, title: 'hello world!', question: 'xxxx', answerCodePath: '../xxx', testCodePath: '../yyy' },
-    { id: 11, title: 'hello world2', question: 'xxxx', answerCodePath: '../xxx', testCodePath: '../yyy' },
-    { id: 12, title: 'hello world3', question: 'xxxx', answerCodePath: '../xxx', testCodePath: '../yyy' },
-    { id: 13, title: 'hello world4', question: 'xxxx', answerCodePath: '../xxx', testCodePath: '../yyy' },
-    { id: 14, title: 'hello world5', question: 'xxxx', answerCodePath: '../xxx', testCodePath: '../yyy' },
-  ];
-  contestList = "問題一覧"
-
-  constructor() {
+  constructor(private contestService: ContestService) {
     this.columnDefs = [
-      { headerName: 'ID', field: 'id' },
-      { headerName: 'タイトル', field: 'title' }
+      {
+        headerName: 'ID',
+        field: 'id',
+        width: 75
+      },{ 
+        headerName: 'タイトル',
+        field: 'title',
+        cellRenderer: function (params) {
+          return '<a href="/contest/' + params.data.id + '">' + params.value + '</a>'
+        }
+      },{
+        headerName: '内容',
+        field: 'question',
+        width: 500
+      }
     ];
     this.rowSelection = 'single';
   }
@@ -53,8 +49,13 @@ export class ContestsComponent implements OnInit {
   }
 
   getContests(): void {
-    console.info('get contets')
-  }
+    this.contestService.getContests().subscribe(
+      (data) => {
+        this.gridApi.setRowData(data);
+      },
+      (error) => {
+      });
+  };
 
   onSelectionChanged(event): void {
     var selectedRows = this.gridApi.getSelectedRows();
@@ -65,7 +66,6 @@ export class ContestsComponent implements OnInit {
       }
       selectedRowsString += selectedRow.title;
     });
-    document.querySelector("#selectedRows").innerHTML = selectedRowsString;
   }
 
 }

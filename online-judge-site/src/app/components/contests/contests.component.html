@@ -1,12 +1,10 @@
 <app-layout>
-	<h2>{{contestList}}</h2>
-	<!-- <div>
-		Selection:
-		<span id="selectedRows"></span>
-	</div> -->
+	<h2>{{contestListLabel}}</h2>
+	<div class="text-right">
+		<a href="./addcontest">{{addLabel}}</a>
+	</div>
 	<ag-grid-angular
-		style="height: 300px;width: 100%;"
-		class="ag-theme-material"
+		class="ag-theme-material contest-list"
 		[rowData]="rowData"
 		[columnDefs]="columnDefs"
 		[rowSelection]="rowSelection"

@@ -40,6 +40,11 @@
 	- `Failed to unlink socket file /tmp/mongodb-27017.sock Unknown error` -> webで検索してもヒットしないので解決できず
 	- mongo-expressはdocker-composeすることが前提.wslでdocker-composeできないためにmongoDB on ubuntu on Windowsを断念
 	- チュートリアル http://kageura.hatenadiary.jp/entry/2018/01/09/Windows%E7%89%88MongoDB%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%83%BBMongoShell%E3%82%92%E9%80%9A%E3%81%97%E3%81%A6CRUD%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%82%92%E6%89%93
+	- build-inのロール https://qiita.com/makaaso/items/51e5a3aa3679ad0dd8cd
+	- ユーザ作成と認証 https://garafu.blogspot.com/2017/01/enable-mongodb-auth-control.html
+	- mongoDB 3.xでのconnect() https://teratail.com/questions/106050
+	- jsからアクセス制御を有効にしたmongoDB接続 https://www.imuza.com/entry/2018/01/25/195740
+	- REST API(CRUD)の実装 https://qiita.com/itagakishintaro/items/a1519998a91061cbfb1e
 - mongo-express
 	- mongo-expressの起動コマンド https://hub.docker.com/_/mongo-express
 - expressjs

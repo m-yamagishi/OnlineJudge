@@ -9,6 +9,13 @@ import { HeroService } from '../../services/hero.service';
 })
 export class HomeComponent implements OnInit {
   heroes: Hero[] = [];
+  title = 'OnLine Judge System Beta';
+	md = ""
+		+ "\n"
+		+ "- [Java問題に解答する](/contests)\n"
+    + "- [Java問題を作成する](/addcontest)\n"
+    + "- 解答状況を確認する\n"
+		+ "";
 
   constructor(private heroService: HeroService) { }
 
