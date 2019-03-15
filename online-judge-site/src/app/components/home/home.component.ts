@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Hero } from '../../models/hero';
-import { HeroService } from '../../services/hero.service';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +6,6 @@ import { HeroService } from '../../services/hero.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  heroes: Hero[] = [];
   title = 'OnLine Judge System Beta';
 	md = ""
 		+ "\n"
@@ -17,14 +14,8 @@ export class HomeComponent implements OnInit {
     + "- 解答状況を確認する\n"
 		+ "";
 
-  constructor(private heroService: HeroService) { }
+  constructor() { }
 
   ngOnInit() {
-    // this.getHeroes();
-  }
-
-  getHeroes(): void {
-    this.heroService.getHeroes()
-      .subscribe(heroes => this.heroes = heroes.slice(1, 5));
   }
 }
