@@ -97,8 +97,6 @@ router.post('/junit', function (req, res) {
 		'--ulimit fsize=1000000 ' +
 		'-w /workspace ' +
 		'ubuntu-dev ' +
-		'/usr/bin/time -q -f "%e" -o /time.txt ' +
-		'timeout 3 ' +
 		'/bin/bash -c "' +
 		execCmd +
 		'"';
@@ -113,31 +111,22 @@ router.post('/junit', function (req, res) {
 	fs.writeFileSync('/tmp/workspace/' + test_filename, test_code);
 	var hamcrest = 'hamcrest-core-1.3.jar';
 	var hamcrest_path = '/tmp/workspace/' + hamcrest;
-	if (!isExistFile(hamcrest_path)) {
-		fs.copyFile(hamcrest, hamcrest_path, (err) => {
-			if (err) {
-				console.log(err.stack);
-			} else {
-				console.log('copy hamcrest.jar to workspace');
-			}
-		});
-	} else {
-		console.log('hamcrest is already exist');
-	}
+	fs.copyFile(hamcrest, hamcrest_path, (err) => {
+		if (err) {
+			console.log(err.stack);
+		} else {
+			console.log('copy hamcrest.jar to workspace');
+		}
+	});
 	var junit = 'junit-4.12.jar';
 	var junit_path = '/tmp/workspace/' + junit;
-	if(!isExistFile(junit_path)) {
-		fs.copyFile(junit, hamcrest_path, (err) => {
-			if (err) {
-				console.log(err.stack);
-			} else {
-				console.log('copy hamcrest.jar to workspace');
-			}
-		});
-		console.log('copy junit.jar to workspace');
-	} else {
-		console.log('junit is already exist');
-	}
+	fs.copyFile(junit, junit_path, (err) => {
+		if (err) {
+			console.log(err.stack);
+		} else {
+			console.log('copy junit.jar to workspace');
+		}
+	});
 	dockerCmd = "docker cp /tmp/workspace " + containerId + ":/";
 	console.log("Running: " + dockerCmd);
 	child_process.execSync(dockerCmd);
@@ -146,12 +135,6 @@ router.post('/junit', function (req, res) {
 	dockerCmd = "docker start -i " + containerId;
 	console.log("Running: " + dockerCmd);
 	var child = child_process.exec(dockerCmd, {}, function (error, stdout, stderr) {
-
-		//Copy time command result
-		dockerCmd = "docker cp " + containerId + ":/time.txt /tmp/time.txt";
-		console.log("Running: " + dockerCmd);
-		child_process.execSync(dockerCmd);
-		var time = fs.readFileSync("/tmp/time.txt").toString();
 
 		//Remove the container
 		dockerCmd = "docker rm " + containerId;
@@ -162,21 +145,10 @@ router.post('/junit', function (req, res) {
 		res.send({
 			stdout: stdout,
 			stderr: stderr,
-			exit_code: error && error.code || 0,
-			time: time
+			exit_code: error && error.code || 0
 		});
 	});
-	// child.stdin.write(input);
 	child.stdin.end();
 });
-
-function isExistFile(file) {
-	try {
-		fs.statSync(file);
-		return true
-	} catch (err) {
-		if (err.code === 'ENOENT') return false
-	}
-}
   
 module.exports = router;

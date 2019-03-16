@@ -51,7 +51,10 @@
   <br />
   <h2>{{testCodeTitle}}</h2>
   <div>{{testCodeDescription}}</div>
-  <ngx-monaco-editor [options]="options" [(ngModel)]="testCode"></ngx-monaco-editor>
+  <ngx-monaco-editor class="code-area" [options]="options" [(ngModel)]="testCode" [hidden]="testCodeCompleted"></ngx-monaco-editor>
+  <div class="code-area" [hidden]="!testCodeCompleted">
+    <ngx-md [data]="testCodeMd"></ngx-md>
+  </div>
   <div class="text-right">
     <button type="button" class="btn btn-secondary" (click)="runTest(error)" [disabled]="testCodeCompleted || allCompleted">{{exeLabel}}</button>
     <button type="button" class="btn btn-secondary" (click)="fixTest()" [disabled]="!testCodeCompleted || allCompleted">{{fixLabel}}</button>

@@ -28,7 +28,7 @@ export class AddcontestComponent implements OnInit {
   question: string = '';
   answerCodeLabel = '解答コード';
   answerCodeDescription = '問題の答えを標準出力するプログラムを下記に記載してください.Mainクラスの定義mainメソッドのシグネチャは変更しないでください.';
-  answerCode: string = 'public class Main {\n\tpublic static void main(String[] args) {\n\t\tSystem.out.println("your answer");\n\t}\n}';
+  answerCode: string = 'public class Main {\n\tpublic static void main(String[] args) {\n\t\tSystem.out.println("Your answer!");\n\t}\n}';
   answerCodeMd: string;
   answerCodeCompleted = false;
   standardInputLabel = '標準入力';
@@ -47,22 +47,29 @@ export class AddcontestComponent implements OnInit {
     'import static org.junit.Assert.*;\n' +
     'import java.io.ByteArrayOutputStream;\n' +
     'import java.io.PrintStream;\n' +
-    'import org.junit.Test;\n\n' +
-    'public class MainTest {\n\n' +
+    'import org.junit.Test;\n' +
+    'import org.junit.BeforeClass;\n\n' +
+    'public class MainTest {\n' +
+    '\tstatic ByteArrayOutputStream out = new ByteArrayOutputStream();\n\n' +
+    '\t@BeforeClass\n' +
+    '\tpublic static void exeMain() {\n' +
+    '\t\tSystem.setOut(new PrintStream(out));\n' +
+    '\t\tString[] args = {};\n' +
+    '\t\tMain.main(args);\n' +
+    '\t}\n\n' +
     '\t@Test\n' +
-    '\tpublic void test() {\n' +
-    '\t\tByteArrayOutputStream out = new ByteArrayOutputStream();\n' +
-    '\t\tSystem.setOut(new PrintStream(out));\n\n' +
-    '\t\tString[] s = {};\n' +
-    '\t\tMain.main(s);\n\n' +
-    '\t\tassertThat(out.toString(), is("your answer" + System.lineSeparator()));\n' +
+    '\tpublic void isYourAnswer() {\n' +
+    '\t\tassertThat(out.toString(), is("Your answer!" + System.lineSeparator()));\n' +
+    '\t}\n\n' +
+    '\t@Test\n' +
+    '\tpublic void isNotYourAnswer() {\n' +
+    '\t\tassertThat(out.toString(), is(not("My answer!" + System.lineSeparator())));\n' +
     '\t}\n' +
     '}';
   testCodeMd: string;
   testCodeCompleted = false;
   testStandardOutput: string;
   testStandardError: string;
-  testExeTime: string;
   testExitCode: string;
   exeLabel = '実行する';
   fixLabel = '修正する';
@@ -105,7 +112,6 @@ export class AddcontestComponent implements OnInit {
           + "\`\`\`java\n"
           + this.answerCode
           + "\n\`\`\`\n";
-        
         this.spinner.detach();
       },
       (error) => {
@@ -130,16 +136,18 @@ export class AddcontestComponent implements OnInit {
       };
       this.codeService.junit(body).subscribe(
         (data) => {
-          console.info('eun junit')
-          console.info(data)
+          this.testStandardOutput = data['stdout'];
           this.testStandardError = data['stderr'];
-          this.testExeTime = data['time'];
           this.testExitCode = data['exit_code'];
           this.testCodeCompleted = this.testExitCode == '0';
+          this.testCodeMd = ""
+          + "\`\`\`java\n"
+          + this.testCode
+          + "\n\`\`\`\n";
           this.spinner.detach();
         },
         (error) => {
-          console.info(error);
+          console.log(error);
           this.spinner.detach();
         })
       }
@@ -153,7 +161,7 @@ export class AddcontestComponent implements OnInit {
     if(this.packageName.length < 1) this.errorMessage += 'タイトルを入力してください。\n';
     if(this.question.length < 1) this.errorMessage += '問題文を入力してください。\n';
     if(!this.answerCodeCompleted) this.errorMessage += '解答コードの実行を完了させてください。\n';
-    // if(!this.testCodeCompleted) this.errorMessage += 'テストコードの実行を完了させてください。\n';
+    if(!this.testCodeCompleted) this.errorMessage += 'テストコードの実行を完了させてください。\n';
     if(this.errorMessage.length > 0) {
       this.openerromodal(error);
     } else {
@@ -167,12 +175,10 @@ export class AddcontestComponent implements OnInit {
       }
       this.contestService.postContest(body).subscribe(
         (data) => {
-          console.log('登録しました')
           this.allCompleted = true;
           this.spinner.detach();
         },
         (error) => {
-          console.log('error')
           console.log(error)
           this.spinner.detach();
         })
@@ -184,12 +190,10 @@ export class AddcontestComponent implements OnInit {
       (result) => {
         this.errorMessage = '';
         console.log(`Closed with: ${result}`);
-        console.log('errorMessage:', this.errorMessage);
       },
       (reason) => {
         this.errorMessage = '';
         console.log(`Dismissed ${this.getDismissReason(reason)}`)
-        console.log('errorMessage:', this.errorMessage);
       });
   }
 

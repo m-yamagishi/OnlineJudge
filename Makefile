@@ -9,9 +9,9 @@ init:
 	npm install -g node-dev
 	# cd coderunner && npm install
 	# cd online-judge-site && npm install
-
-	# curl -o source/junit-4.12.jar -OL https://github.com/junit-team/junit4/releases/download/r4.12/junit-4.12-sources.jar
-	# curl -o source/hamcrest-core-1.3.jar -OL http://search.maven.org/remotecontent?filepath=org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar
+	
+	# curl -o online-judge-server/junit-4.12.jar -OL https://github.com/junit-team/junit4/releases/download/r4.12/junit-4.12.jar
+	# curl -o online-judge-server/hamcrest-core-1.3.jar -OL http://search.maven.org/remotecontent?filepath=org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar
 
 	docker pull mongo
 	docker pull mongo-express
@@ -28,7 +28,10 @@ mkdeploy:
 ubuntudockerbuild:
 	cd image-ubuntu-dev && docker build -t ubuntu-dev .
 
-ubuntudockerin:
+# docker create -i --net none --ulimit nproc=10:10 --ulimit fsize=1000000 -w /workspace ubuntu-dev /bin/bash
+# docker cp /tmp/workspace 1339cbe76cd2:/
+# docker start -i 1339cbe76cd2
+ubuntudockerrun:
 	docker run -it -w /workspace ubuntu-dev bash
 
 builddockertest:
