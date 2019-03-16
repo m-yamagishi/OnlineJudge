@@ -73,6 +73,7 @@
 		- `javac Hello/Main.java`
 		- `javac -cp .:junit-4.12.jar:hamcrest-core-1.3.jar Hello/MainTest.java`
 		- `java -cp .:junit-4.12.jar:hamcrest-core-1.3.jar org.junit.runner.JUnitCore Hello.MainTest`
+	- アノテーション https://qiita.com/tsukakei/items/b892409cf982f1951933
 - curl
 - vscode(javaの実行環境)
 		- tutorial https://angular.jp/tutorial/toh-pt0

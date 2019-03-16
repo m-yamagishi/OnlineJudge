@@ -13,6 +13,7 @@ import { UiModule } from './ui/ui.module';
 import { AppComponent }         from './app.component';
 import { MessagesComponent }    from './messages/messages.component';
 import { HomeComponent } from './components/home/home.component';
+import { ContestComponent } from './components/contest/contest.component';
 import { ContestsComponent } from './components/contests/contests.component';
 import { AddcontestComponent } from './components/addcontest/addcontest.component';
 
@@ -49,7 +50,8 @@ import 'prismjs/components/prism-javascript';
     MessagesComponent,
     HomeComponent,
     ContestsComponent,
-    AddcontestComponent
+    AddcontestComponent,
+    ContestComponent
   ],
   bootstrap: [ AppComponent ]
 })

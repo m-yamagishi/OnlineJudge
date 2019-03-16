@@ -3,9 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Overlay } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { MatSpinner } from '@angular/material/progress-spinner';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
-import {CodeService} from '../../services/code.service';
+import { CodeService } from '../../services/code.service';
 import { ContestService } from '../../services/contest.service';
 
 @Component({
@@ -25,9 +25,12 @@ export class AddcontestComponent implements OnInit {
   packageNameDescription = 'タイトルはJavaのパッケージ名にも使用します.英字のアッパーキャメルケースで記載してください.';
   packageName: string = '';
   questionLabel = '問題文';
+  questionDescription = '問題文をマークダウン形式で記載してください.';
+  previwLabel = 'プレビュー';
+  previewMode = false;
   question: string = '';
   answerCodeLabel = '解答コード';
-  answerCodeDescription = '問題の答えを標準出力するプログラムを下記に記載してください.Mainクラスの定義mainメソッドのシグネチャは変更しないでください.';
+  answerCodeDescription = '問題の答えを標準出力するプログラムを下記に記載してください.Mainクラスの定義,mainメソッドのシグネチャは変更しないでください.';
   answerCode: string = 'public class Main {\n\tpublic static void main(String[] args) {\n\t\tSystem.out.println("Your answer!");\n\t}\n}';
   answerCodeMd: string;
   answerCodeCompleted = false;
@@ -81,7 +84,7 @@ export class AddcontestComponent implements OnInit {
   errorMessage:string = '';
   closeLabel = '閉じる';
   allCompleted = false;
-  doneMessage = '登録が完了しました。';
+  doneMessage = '登録が完了しました';
 
   constructor(
     private http: HttpClient,
@@ -91,6 +94,10 @@ export class AddcontestComponent implements OnInit {
     private contestService: ContestService) { }
 
   ngOnInit() {
+  }
+
+  preview() {
+    this.previewMode = !this.previewMode;
   }
 
   runAns() {

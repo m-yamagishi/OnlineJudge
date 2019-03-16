@@ -20,7 +20,14 @@
   <br />
   <br />
   <h2>{{questionLabel}}</h2>
-  <textarea class="textbox" [(ngModel)]="question" [readonly]="allCompleted"></textarea>
+  <div>{{questionDescription}}</div>
+  <textarea class="textbox question-area" [(ngModel)]="question" [readonly]="allCompleted" [hidden]="previewMode"></textarea>
+  <div class="question-area" [hidden]="!previewMode">
+    <ngx-md [data]="question"></ngx-md>
+  </div>
+  <div class="text-right">
+    <button type="button" class="btn btn-secondary" (click)="preview()">{{previwLabel}}</button>
+  </div>
   <br />
   <br />
   <h2>{{answerCodeLabel}}</h2> 

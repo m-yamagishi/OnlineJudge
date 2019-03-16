@@ -28,7 +28,7 @@ export class ContestsComponent implements OnInit {
         headerName: 'タイトル',
         field: 'title',
         cellRenderer: function (params) {
-          return '<a href="/contest/' + params.data.id + '">' + params.value + '</a>'
+          return '<a href="/contest/' + params.data._id + '">' + params.value + '</a>'
         }
       },{
         headerName: '内容',

@@ -9,9 +9,10 @@ export class HomeComponent implements OnInit {
   title = 'OnLine Judge System Beta';
 	md = ""
 		+ "\n"
+		+ "- ログインする\n"
 		+ "- [Java問題に解答する](/contests)\n"
     + "- [Java問題を作成する](/addcontest)\n"
-    + "- 解答状況を確認する\n"
+    + "- 成績を確認する\n"
 		+ "";
 
   constructor() { }
