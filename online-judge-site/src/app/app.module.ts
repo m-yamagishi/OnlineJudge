@@ -19,7 +19,7 @@ import { AddcontestComponent } from './components/addcontest/addcontest.componen
 
 import { MatProgressSpinnerModule, MatSpinner } from '@angular/material/progress-spinner';
 import { OverlayModule } from '@angular/cdk/overlay';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import 'prismjs/components/prism-java';
 import 'prismjs/components/prism-python';

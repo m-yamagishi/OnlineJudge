@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Contest } from '../../models/contest';
 import { ContestService } from '../../services/contest.service';
@@ -18,7 +19,9 @@ export class ContestsComponent implements OnInit {
   contestListLabel = '問題一覧'
   addLabel = '問題を追加する'
 
-  constructor(private contestService: ContestService) {
+  constructor(
+    private contestService: ContestService,
+    private router: Router) {
     this.columnDefs = [
       {
         headerName: 'ID',
@@ -27,9 +30,10 @@ export class ContestsComponent implements OnInit {
       },{ 
         headerName: 'タイトル',
         field: 'title',
-        cellRenderer: function (params) {
-          return '<a href="/contest/' + params.data._id + '">' + params.value + '</a>'
-        }
+        // cellRenderer: function (params) {
+        //   return '<a href="/contest/' + params.data._id + '">' + params.value + '</a>'
+        //   return '<a routerLink="../contest/' + params.data._id + '" routerLinkActive="active">' + params.value + '</a>'
+        // }
       },{
         headerName: '内容',
         field: 'question',
@@ -40,12 +44,12 @@ export class ContestsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getContests();
   }
 
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
+    this.getContests();
   }
 
   getContests(): void {
@@ -59,13 +63,14 @@ export class ContestsComponent implements OnInit {
 
   onSelectionChanged(event): void {
     var selectedRows = this.gridApi.getSelectedRows();
-    var selectedRowsString = "";
-    selectedRows.forEach(function (selectedRow, index) {
-      if (index !== 0) {
-        selectedRowsString += ", ";
-      }
-      selectedRowsString += selectedRow.title;
-    });
+    this.router.navigateByUrl('/contest/' + selectedRows[0]['_id']);
+    // var selectedRowsString = "";
+    // selectedRows.forEach(function (selectedRow, index) {
+    //   if (index !== 0) {
+    //     selectedRowsString += ", ";
+    //   }
+    //   selectedRowsString += selectedRow.title;
+    // });
   }
 
 }

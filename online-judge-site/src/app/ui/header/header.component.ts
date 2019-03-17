@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-header',
@@ -13,9 +14,12 @@ export class HeaderComponent implements OnInit {
 	user_list = 'ユーザ一覧';
 	login = 'ログイン';
   
-	constructor() { }
+	constructor(private router: Router) { }
 
 	ngOnInit() {
 	}
 
+	go(page) {
+		this.router.navigateByUrl(page);
+	}
 }

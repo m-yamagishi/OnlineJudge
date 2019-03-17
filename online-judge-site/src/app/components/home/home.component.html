@@ -10,5 +10,10 @@
   <br />
   <br />
   <br />
-  <ngx-md [data]="md"></ngx-md>
+  <ul>
+    <li>{{loginLabel}}</li>
+    <li><a routerLink="/contests" routerLinkActive="active">{{answerLabel}}</a></li>
+    <li><a routerLink="/addcontest" routerLinkActive="active">{{addLabel}}</a></li>
+    <li>{{refLabel}}</li>
+  </ul>
 </app-layout>

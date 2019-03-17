@@ -25,6 +25,12 @@ mkserve:
 mkdeploy:
 	cd docs && mkdocs gh-deploy
 
+dockerservicestart:
+	# ubuntuを管理者権限で起動していることが前提
+	sudo cgroupfs-mount
+	sudo usermod -aG docker $USER
+	sudo service docker start
+
 ubuntudockerbuild:
 	cd image-ubuntu-dev && docker build -t ubuntu-dev .
 
@@ -65,19 +71,27 @@ siteserve:
 	cd online-judge-site && ng serve --port 4649 --host 0.0.0.0
 
 sitebuild:
-	cd online-judge-site && npm rum build --prod
-
-sitedockerrun:
-	docker run -it --rm -p 8080:80 onlinejudge_judgesite
+	cd online-judge-site && npm rum build --prod --baseHref=/online-judge-site/
 
 sitedockerbuild:
+	# make sitebuild
 	cd online-judge-site && docker build -t onlinejudge_judgesite .
+
+sitedockerrun:
+	# make sitedockerbuild
+	docker run -it --rm -p 8082:80 onlinejudge_judgesite
 
 serversave:
 	cd online-judge-server && npm install --save mongodb monk jade
 
 serverserve:
 	cd online-judge-server && node-dev app.js
+
+serverdockerbuild:
+	cd online-judge-server && docker build -t onlinejudge_judgeserver .
+
+serverdockerrun:
+	docker run -it --rm -p 3001:3000 onlinejudge_judgeserver
 
 mongodockerrun:
 	docker run -it --rm \
@@ -100,6 +114,9 @@ mongoexpressdockerrun:
 	-e ME_CONFIG_BASICAUTH_PASSWORD="password" \
 	-d \
 	mongo-express
+
+up:
+	docker-compose up mongo mongo-express judgesite
 
 mongologin:
 	#mongo 「DB名」 -u 「ユーザー名」 -p

@@ -22,7 +22,7 @@ export class AddcontestComponent implements OnInit {
   });
 
   packageNameLabel = 'タイトル';
-  packageNameDescription = 'タイトルはJavaのパッケージ名にも使用します.英字のアッパーキャメルケースで記載してください.';
+  packageNameDescription = '';
   packageName: string = '';
   questionLabel = '問題文';
   questionDescription = '問題文をマークダウン形式で記載してください.';

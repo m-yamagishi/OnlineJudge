@@ -27,6 +27,11 @@ db.system.users.find()
 db.system.users.remove({"_id" : "admin.judge"})
 */
 
+/*
+db.createUser({user:"judge",pwd:"judge",roles:[{role:"readWrite",db:"app1db"}],mechanisms:["SCRAM-SHA-1"]})
+*/
+
+
 // GET  http://localhost:3000/api/v1/sample/contests
 router.get('/contests', function (req, res) {
 	console.log(collection(COL).find());

@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'contests', component: ContestsComponent},
   { path: 'contest/:id', component: ContestComponent},
   { path: 'addcontest', component: AddcontestComponent},
+  { path: '**', redirectTo: '/home', pathMatch: 'full' }
 ];
 
 @NgModule({
