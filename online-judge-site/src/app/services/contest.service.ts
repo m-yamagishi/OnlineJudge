@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Contest } from '../models/contest';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContestService {
-  private url = 'http://localhost:3000/api/v1/contests';
+  private url = environment.serverUrl + '/api/v1/contests';
   private headers = new HttpHeaders().set('Content-Type', 'application/json');
   
   constructor(private http: HttpClient) { }

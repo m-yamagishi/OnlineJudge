@@ -33,6 +33,7 @@
 	- ユーザにグループを追加する `sudo usermod -aG wheel m-yamagishi`
 	- 指定したユーザに変更する `su`
 	- ubuntuを管理者権限で実行.`sudo cgroupfs-mount`を都度実行 https://qiita.com/koinori/items/78a946fc74452af9afba
+	- ubuntu on WSLで`node app.js`するときにポートを開く許可をホストに要求しない.->Windowsであらかじめポートを外部からアクセスできるように設定しておかなければいけない https://www.nextofwindows.com/allow-server-running-inside-wsl-to-be-accessible-outside-windows-10-host
 
 - Docker
 	- dockerサービスの起動 `sudo service docker start`
@@ -47,6 +48,7 @@
 	- コンテナ終了後コンテナを削除 `--rm` https://qiita.com/hoshino/items/9545d255cc0103b3d296
 	- 未使用位コンテナイメージの一括削除 `docker image prune` https://qiita.com/boiyaa/items/9972601ffc240553e1f3
 	- mongo on windowsの設定ファイル https://qiita.com/t-koyama/items/9b8804cbec59b3c93eb0
+	- どっかーコンテナに外部から単純にアクセスできない http://mussyu1204.myhome.cx/wordpress/it/?p=115
 ![](https://cdn-images-1.medium.com/max/2600/1*vca4e-SjpzSL5H401p4LCg.png)
 
 - mongoDB

@@ -78,7 +78,7 @@ sitedockerbuild:
 	cd online-judge-site && docker build -t onlinejudge_judgesite .
 
 sitedockerrun:
-	# make sitedockerbuild
+	make sitedockerbuild
 	docker run -it --rm -p 8082:80 onlinejudge_judgesite
 
 serversave:
