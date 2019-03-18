@@ -92,6 +92,11 @@
 
 - nginx
 	- 設定ファイル -> 配置するとブラウザのリロードができるようになる https://satococoa.hatenablog.com/entry/2018/07/17/162055
+	- Windwsでnginxの起動 `start nginx`,停止 `nginx.exe -s quit` https://teratail.com/questions/2533
+	- 強制終了 `taskkill /f /im nginx.exe` https://teratail.com/questions/138853
+
+- デザイン
+	- アラート https://ng-bootstrap.github.io/#/components/alert/examples#closeable
 
 - Junit 4.12
 	- 環境設定とコマンドラインでの実行手順 https://github.com/junit-team/junit4/wiki/Getting-started

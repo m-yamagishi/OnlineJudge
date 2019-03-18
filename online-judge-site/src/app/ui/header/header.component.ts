@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 	title = 'Online Judge Site';
+	home = 'ホーム';
 	exercise = '問題一覧';
 	regi_exe = '問題登録';
 	result = '成績確認';

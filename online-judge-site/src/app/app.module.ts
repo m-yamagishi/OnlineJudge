@@ -25,6 +25,7 @@ import 'prismjs/components/prism-java';
 import 'prismjs/components/prism-python';
 import 'prismjs/components/prism-csharp';
 import 'prismjs/components/prism-javascript';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   imports: [
@@ -51,7 +52,8 @@ import 'prismjs/components/prism-javascript';
     HomeComponent,
     ContestsComponent,
     AddcontestComponent,
-    ContestComponent
+    ContestComponent,
+    LoginComponent
   ],
   bootstrap: [ AppComponent ]
 })

@@ -7,12 +7,13 @@
   
 	<div class="collapse navbar-collapse" id="navbarText">
 	  <div class="navbar-nav mr-auto">
+		<a class="nav-item nav-link" (click)="go('home')">{{home}}</a>
 		<a class="nav-item nav-link" (click)="go('contests')">{{exercise}}</a>
 		<a class="nav-item nav-link" (click)="go('addcontest')">{{regi_exe}}</a>
 		<a class="nav-item nav-link">{{result}}</a>
 	  </div>
 	  <div class="navbar-nav navbar-right">
-		<a class="nav-item nav-link" href="#">{{login}}</a>
+		<a class="nav-item nav-link" (click)="go('login')">{{login}}</a>
 	  </div>
 	</div>
   </nav>
