@@ -85,6 +85,8 @@
 	- ng-bootstrapでモーダル https://ng-bootstrap.github.io/#/components/modal/examples
 	- tsで画面遷移を実装 https://oar.st40.xyz/article/184
 	- cookieに保存と取得 https://qiita.com/second113/items/754cf6b63bfe89702dce
+	- Guardの生成 https://qiita.com/daiki7nohe/items/ddeebad790ae4127d9a7
+	- Guardの実装 https://kuluna.github.io/blog/post/20170920/
 
 - node.js
 	- fs ファイルコピー https://qiita.com/tadnakam/items/6b6e0da5bb05c86bd573
