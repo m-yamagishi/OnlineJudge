@@ -25,9 +25,14 @@ router.get('/:id', function (req, res) {
  * 	answerer: user who answer the contest,
  *  date_time: when answer the contest,
  * 	answer_code: answer code,
+ *	answer_stdout: ,
+ * 	answer_stderr: ,
+ * 	ansewr_exit_code: ,
  *  exe_time: answer code execution time
  * 	test_code: test code,
- * 	test_std_out: stdout of test code
+ * 	test_stdout: stdout of test code,
+ * 	test_stderr: ,
+ * 	test_exit_code:
  * }
  */
 router.post('/', function (req, res) {

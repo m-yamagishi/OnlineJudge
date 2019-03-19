@@ -27,9 +27,13 @@ export class ResultsComponent implements OnInit {
       }, {
         headerName: '提出日時',
         field: 'date_time'
-      }, {
-        headerName: '結果',
-        field: 'test_std_out'
+      },{
+        headerName: '結果①',
+        field: 'test_exit_code',
+        width: 125
+      },{
+        headerName: '結果②',
+        field: 'test_stdout'
       }
     ];
     this.rowSelection = 'single';

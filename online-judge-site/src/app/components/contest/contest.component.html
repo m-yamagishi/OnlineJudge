@@ -4,16 +4,16 @@
     <button type="button" class="btn btn-primary btn-lg" (click)="submitYes()">{{yesLabel}}</button>
     <button type="button" class="btn btn-secondary btn-lg" (click)="submitNo()">{{noLabel}}</button>
   </div>
-</ng-template>  
+</ng-template>
 <app-layout>
-  <h2>{{titile}}</h2>
+  <h2>{{title}}</h2>
   <br />
   <br />
   <h2>{{questionLabel}}</h2>
   <ngx-md [data]="question"></ngx-md>
   <br />
   <br />
-  <h2>{{answerCodeLabel}}</h2> 
+  <h2>{{answerCodeLabel}}</h2>
   <div>{{answerCodeDescription}}</div>
   <ngx-monaco-editor class="code-area" [options]="options" [(ngModel)]="answerCode" [hidden]="allCompleted"></ngx-monaco-editor>
   <div class="code-area" [hidden]="!allCompleted">
@@ -29,18 +29,21 @@
   <h5>{{stdOutputLabel}}</h5>
   <pre><div class="result-area">{{stdOutput}}</div></pre>
   <br />
-  <h5>{{stdErrorLabel}}</h5>  
+  <h5>{{stdErrorLabel}}</h5>
   <pre><div class="result-area">{{stdError}}</div></pre>
   <br />
   <h5>{{exeTimeLabel}}</h5>
   <div class="result-area">{{exeTime}}</div>
   <br />
-  <h5>{{exitCodeLabel}}</h5>  
+  <h5>{{exitCodeLabel}}</h5>
   <div class="result-area">{{exitCode}}</div>
   <br />
   <div class="text-right">
     <button type="button" class="btn btn-primary" (click)="submit(confirm)" [disabled]="allCompleted">{{submitLabel}}</button>
   </div>
+  <ngb-alert type="alert" [dismissible]="false" [hidden]="!error">
+    {{errorMessage}}
+  </ngb-alert>
   <ngb-alert type="info" [dismissible]="false" [hidden]="!allCompleted">
     {{doneMessage}}
   </ngb-alert>

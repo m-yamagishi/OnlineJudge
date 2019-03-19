@@ -6,8 +6,11 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { MatSpinner } from '@angular/material/progress-spinner';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
+import { CookieService } from 'ngx-cookie-service';
+
 import { CodeService } from '../../services/code.service';
 import { ContestService } from '../../services/contest.service';
+import { ResultService } from '../../services/result.service';
 
 @Component({
   selector: 'app-contest',
@@ -22,6 +25,7 @@ export class ContestComponent implements OnInit {
       .position().global().centerHorizontally().centerVertically()
   });
 
+  contestId: string;
   titleLabel = 'タイトル';
   title: string;
   questionLabel = '問題文';
@@ -42,6 +46,9 @@ export class ContestComponent implements OnInit {
   exitCodeLabel = '終了コード';
   exitCode: string;
   testCode: string;
+  testStdOutput: string;
+  testStdError: string;
+  testExitCode: string;
   allCompleted = false;
   exeLabel = '実行する';
   fixLabel = '修正する';
@@ -50,23 +57,27 @@ export class ContestComponent implements OnInit {
   yesLabel = 'はい';
   noLabel = 'いいえ';
   doneMessage = '提出しました';
+  error = false;
+  errorMessage = 'エラーが発生しています.管理者に問い合わせてください';
 
   constructor(
     private route: ActivatedRoute,
     private codeService: CodeService,
     private contestService: ContestService,
     private overlay: Overlay,
-    private modalService: NgbModal) { }
+    private modalService: NgbModal,
+    private resultService: ResultService,
+    private cookieService: CookieService) { }
 
   ngOnInit() {
-    var id = this.route.snapshot.paramMap.get('id');
-    this.getContest(id);
+    this.contestId = this.route.snapshot.paramMap.get('id');
+    this.getContest(this.contestId);
   }
 
   getContest(id: string): void{
     this.contestService.getContest(id).subscribe(
       (data) => {
-        this.title = data['titlie'];
+        this.title = data['title'];
         this.question = data['question'];
         this.testCode = data['testCode'];
       },
@@ -109,12 +120,60 @@ export class ContestComponent implements OnInit {
   }
 
   submitYes() {
-    this.allCompleted = true;
-    this.answerCodeMd = ""
-    + "\`\`\`java\n"
-    + this.answerCode
-    + "\n\`\`\`\n";
     this.modalService.dismissAll();
+
+    this.spinner.attach(new ComponentPortal(MatSpinner));
+    var body = {
+      source_code: this.answerCode,
+      test_code: this.testCode
+    };
+    this.codeService.junit(body).subscribe(
+      (data) => {
+        console.info(data)
+        this.testStdOutput = data['stdout'];
+        this.testStdError = data['stderr'];
+        this.testExitCode = data['exit_code'];
+
+        var body = {
+          contest_id: this.contestId,
+          contest_name: this.title || null,
+          answerer: this.cookieService.get('online-judge-site-user'),
+          date_time: new Date(),
+          answer_code: this.answerCode,
+          answer_stdout: this.stdOutput || null,
+          answer_stderr: this.stdError || null,
+          ansewr_exit_code: this.exitCode || null,
+          exe_time: this.exeTime,
+          test_code: this.testCode,
+          test_stdout: this.testStdOutput,
+          test_stderr: this.testStdError,
+          test_exit_code: this.testExitCode,
+        }
+        this.resultService.postResult(body).subscribe(
+          (data) => {
+            console.info(data)
+            this.allCompleted = true;
+            this.answerCodeMd = ""
+            + "\`\`\`java\n"
+            + this.answerCode
+            + "\n\`\`\`\n";
+            this.spinner.detach();
+          },
+          (error) => {
+            this.error = true;
+            console.log('error')
+            console.log(error)
+            this.spinner.detach();
+          }
+        )
+      },
+      (error) => {
+        this.error = true;
+        console.log('error')
+        console.log(error)
+        this.spinner.detach();
+      }
+    )
   }
 
   submitNo() {
