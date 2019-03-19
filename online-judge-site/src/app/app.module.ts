@@ -26,6 +26,7 @@ import 'prismjs/components/prism-python';
 import 'prismjs/components/prism-csharp';
 import 'prismjs/components/prism-javascript';
 import { LoginComponent } from './components/login/login.component';
+import { UsersComponent } from './components/users/users.component';
 
 @NgModule({
   imports: [
@@ -53,7 +54,8 @@ import { LoginComponent } from './components/login/login.component';
     ContestsComponent,
     AddcontestComponent,
     ContestComponent,
-    LoginComponent
+    LoginComponent,
+    UsersComponent
   ],
   bootstrap: [ AppComponent ]
 })
