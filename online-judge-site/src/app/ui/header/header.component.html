@@ -1,20 +1,24 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-	<a class="navbar-brand" href="/">{{title}}</a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
-	  aria-expanded="false" aria-label="Toggle navigation">
-	  <span class="navbar-toggler-icon"></span>
-	</button>
-  
-	<div class="collapse navbar-collapse" id="navbarText">
-	  <div class="navbar-nav mr-auto">
-		<a class="nav-item nav-link" (click)="go('home')">{{home}}</a>
-		<a class="nav-item nav-link" (click)="go('contests')">{{exercise}}</a>
-		<a class="nav-item nav-link" (click)="go('addcontest')">{{regi_exe}}</a>
-		<a class="nav-item nav-link">{{result}}</a>
-		<a class="nav-item nav-link" (click)="go('users')">{{user_list}}</a>
-	  </div>
-	  <div class="navbar-nav navbar-right">
-		<a class="nav-item nav-link" (click)="go('login')">{{login}}</a>
-	  </div>
-	</div>
-  </nav>
+  <a class="navbar-brand" href="/">{{title}}</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarText">
+    <div class="navbar-nav mr-auto">
+      <a class="nav-item nav-link" (click)="go('home')">{{homeLabel}}</a>
+      <a class="nav-item nav-link" (click)="go('contests')">{{contestsLabel}}</a>
+      <a class="nav-item nav-link" (click)="go('addcontest')">{{addContestLabel}}</a>
+      <a class="nav-item nav-link">{{resultLabel}}</a>
+      <a class="nav-item nav-link" (click)="go('users')">{{userLabel}}</a>
+    </div>
+    <div class="navbar-nav navbar-right">
+			<div class="navbar-brand" *ngIf="user">
+				<span>{{user}}@{{role}}</span>
+			</div>
+      <a class="nav-item nav-link" (click)="go('login')" *ngIf="!user">{{loginLabel}}</a>
+      <a class="nav-item nav-link" (click)="logout()" *ngIf="user">{{logoutLabel}}</a>
+    </div>
+  </div>
+</nav>

@@ -22,7 +22,7 @@ router.get('/:name', function(req, res) {
 
 /*
 body = {
-llllkioooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo    name: user name,
+    name: user name,
     password: user password,
     role: Answerer or Questioner or Administrator
 }

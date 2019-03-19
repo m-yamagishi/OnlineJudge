@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { CookieService } from 'ngx-cookie-service';
 
 import { UserService } from '../../services/user.service';
 
@@ -21,7 +24,10 @@ export class LoginComponent implements OnInit {
   loginCompleted = false;
   doneMessage = 'ログインしました';
 
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    private cookieService: CookieService,
+    private router: Router) { }
 
   ngOnInit() {
   }
@@ -40,17 +46,10 @@ export class LoginComponent implements OnInit {
     this.userService.getUser(this.userName).subscribe(
       (data) => {
         if(data != null) {
-          if(data['password'] == this.password) {
-              this.loginCompleted = true;
-              this.userNameError = this.passwordError = false;
-          } else {
-            this.passwordError = true;
-            this.passwordErrorMessage = 'パスワードが違います';
-          }
-        } else {
-          this.userNameError = true;
-          this.userNameErrorMessage = 'ユーザが登録されていません';
+          if(data['password'] == this.password) this.loginSucceed(data['role']);
+          else this.wrongPassword();
         }
+        else this.notRegisteredUser();
       },
       (error) => {
         console.log('error')
@@ -59,24 +58,38 @@ export class LoginComponent implements OnInit {
     )
   }
 
+  private loginSucceed = function (role: string) {
+    this.loginCompleted = true;
+    this.userNameError = this.passwordError = false;
+    this.cookieService.set('online-judge-site-user', this.userName);
+    this.cookieService.set('online-judge-site-role', role);
+    this.router.navigateByUrl('home');
+  };
+
+  private wrongPassword = function () {
+    this.passwordError = true;
+    this.passwordErrorMessage = 'パスワードが違います';
+  };
+
+  private notRegisteredUser = function () {
+    this.userNameError = true;
+    this.userNameErrorMessage = 'ユーザが登録されていません';
+  };
+
+  private registeredUser = function () {
+    this.userNameErrorMessage = 'ユーザがすでに登録されています';
+  };
+
   signin() {
     this.check();
     if (this.userNameError || this.passwordError) return;
     this.userService.getUser(this.userName).subscribe(
       (data) => {
         this.userNameError = data != null;
-        if (data != null) {
-          this.userNameErrorMessage = 'ユーザがすでに登録されています';
-        } else {
-          var body = {
-            name: this.userName,
-            password: this.password
-          };
-          this.userService.postUser(body).subscribe(
-            (data) => {
-              // console.info(data);
-              this.loginCompleted = true;
-            },
+        if (data != null) this.registeredUser();
+        else {
+          this.userService.postUser({ name: this.userName, password: this.password }).subscribe(
+            (data) => { this.loginSucceed('Answerer') },
             (error) => {
               console.log('error')
               console.log(error)

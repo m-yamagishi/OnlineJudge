@@ -65,6 +65,7 @@ sitesave:
 	cd online-judge-site && npm install --save ngx-monaco-editor
 	cd online-judge-site && npm install --save ngx-md
 	cd online-judge-site && npm install --save @ng-bootstrap/ng-bootstrap
+	cd online-judge-site && npm install --save ngx-cookie-service
 	cd online-judge-site && ng add @angular/material
 
 siteserve:

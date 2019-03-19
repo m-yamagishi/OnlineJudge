@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { CookieService } from 'ngx-cookie-service';
+
 @Component({
 	selector: 'app-header',
 	templateUrl: './header.component.html',
@@ -8,19 +10,36 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 	title = 'Online Judge Site';
-	home = 'ホーム';
-	exercise = '問題一覧';
-	regi_exe = '問題登録';
-	result = '成績確認';
-	user_list = 'ユーザ一覧';
-	login = 'ログイン';
+	homeLabel = 'ホーム';
+	contestsLabel = '問題一覧';
+	addContestLabel = '問題登録';
+	resultLabel = '成績確認';
+	usersLabel = 'ユーザ一覧';
+	user: string;
+	role: string;
+	loginLabel = 'ログイン';
+	logoutLabel = 'ログアウト';
   
-	constructor(private router: Router) { }
+	constructor(
+		private router: Router,
+		private cookieService: CookieService) {}
 
 	ngOnInit() {
+		this.user = this.cookieService.get('online-judge-site-user');
+		var roleCd = this.cookieService.get('online-judge-site-role');
+
+		if(roleCd == 'Answerer') this.role = '解答者';
+		else if(roleCd == 'Questioner') this.role = '出題者';
+		else if(roleCd == 'Administrator') this.role = '管理者';
+		else this.role = 'その他';
 	}
 
 	go(page) {
 		this.router.navigateByUrl(page);
+	}
+
+	logout() {
+		this.cookieService.deleteAll();
+		location.reload();
 	}
 }
