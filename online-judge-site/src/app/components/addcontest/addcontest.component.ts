@@ -3,7 +3,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Overlay } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { MatSpinner } from '@angular/material/progress-spinner';
+
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+
+import { CookieService } from 'ngx-cookie-service';
 
 import { CodeService } from '../../services/code.service';
 import { ContestService } from '../../services/contest.service';
@@ -91,7 +94,8 @@ export class AddcontestComponent implements OnInit {
     private overlay: Overlay,
     private modalService: NgbModal,
     private codeService: CodeService,
-    private contestService: ContestService) { }
+    private contestService: ContestService,
+    private cookieSrrvice: CookieService) { }
 
   ngOnInit() {
   }
@@ -178,7 +182,8 @@ export class AddcontestComponent implements OnInit {
         packageName: this.packageName,
         question: this.question,
         answerCode: this.answerCode,
-        testCode: this.testCode
+        testCode: this.testCode,
+        questioner: this.cookieSrrvice.get('online-judge-site-user')
       }
       this.contestService.postContest(body).subscribe(
         (data) => {

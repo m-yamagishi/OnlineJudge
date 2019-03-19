@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class ContestService {
-  private url = environment.serverUrl + '/api/v1/contests';
+  private url = environment.serverUrl + '/api/v1/contest';
   private headers = new HttpHeaders().set('Content-Type', 'application/json');
   
   constructor(private http: HttpClient) { }

@@ -23,17 +23,19 @@ export class ContestsComponent implements OnInit {
     private contestService: ContestService,
     private router: Router) {
     this.columnDefs = [
-      {
-        headerName: 'ID',
-        field: '_id',
-        width: 200
-      },{ 
+      { 
         headerName: 'タイトル',
         field: 'title',
         // cellRenderer: function (params) {
         //   return '<a href="/contest/' + params.data._id + '">' + params.value + '</a>'
         //   return '<a routerLink="../contest/' + params.data._id + '" routerLinkActive="active">' + params.value + '</a>'
         // }
+      },{
+        headerName: '出題者',
+        field: 'questioner'
+      },{
+          headerName: 'ID',
+          field: '_id'
       },{
         headerName: '内容',
         field: 'question',

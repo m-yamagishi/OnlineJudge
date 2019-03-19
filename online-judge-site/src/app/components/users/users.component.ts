@@ -17,7 +17,7 @@ export class UsersComponent implements OnInit {
 
   userListLabel = 'ユーザ一覧';
 
-  constructor(public userService: UserService) {
+  constructor(private userService: UserService) {
     this.columnDefs = [
       {
         headerName: 'ユーザ名',

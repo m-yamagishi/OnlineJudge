@@ -1,0 +1,11 @@
+<app-layout>
+  <h2>{{resultListLabel}}</h2>
+  <ag-grid-angular
+    class="ag-theme-material result-list"
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+    [rowSelection]="rowSelection"
+    (selectionChanged)="onSelectionChanged($event)"
+    (gridReady)="onGridReady($event)">
+  </ag-grid-angular>
+</app-layout>

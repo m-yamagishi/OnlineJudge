@@ -12,7 +12,7 @@ router.get('/', function (req, res) {
 	});
 });
 
-// GET http://localhost:3000/api/v1/contests/5c8c5de58c76a67dcf76eea8
+// GET http://localhost:3000/api/v1/contest/5c8c5de58c76a67dcf76eea8
 router.get('/:id', function (req, res) {
 	console.log('request params is :', req.params.id);
 	collection(COL).findOne({_id: new ObjectID(req.params.id)}, {}, function (err, r) {

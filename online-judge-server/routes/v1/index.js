@@ -1,10 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-router.use('/sample', require('./sample.js'));
-
 router.use('/user', require('./user.js'));
 router.use('/run', require('./run.js'));
-router.use('/contests', require('./contests.js'));
+router.use('/contest', require('./contest.js'));
+router.use('/result', require('./result.js'));
 
 module.exports = router;

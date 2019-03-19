@@ -15,7 +15,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { UiModule } from './ui/ui.module';
 
-import { MessagesComponent } from './messages/messages.component';
 import { HomeComponent } from './components/home/home.component';
 import { ContestComponent } from './components/contest/contest.component';
 import { ContestsComponent } from './components/contests/contests.component';
@@ -27,6 +26,7 @@ import 'prismjs/components/prism-java';
 import 'prismjs/components/prism-python';
 import 'prismjs/components/prism-csharp';
 import 'prismjs/components/prism-javascript';
+import { ResultsComponent } from './components/results/results.component';
 
 @NgModule({
   imports: [
@@ -49,13 +49,13 @@ import 'prismjs/components/prism-javascript';
   ],
   declarations: [
     AppComponent,
-    MessagesComponent,
     HomeComponent,
     ContestsComponent,
     AddcontestComponent,
     ContestComponent,
     LoginComponent,
-    UsersComponent
+    UsersComponent,
+    ResultsComponent
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]
