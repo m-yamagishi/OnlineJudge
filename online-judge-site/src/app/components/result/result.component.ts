@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivateRoute } from '@angualr/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { ResultService } from '../../services/result.service';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-result',

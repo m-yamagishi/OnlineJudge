@@ -72,7 +72,7 @@ siteserve:
 	cd online-judge-site && ng serve --port 4649 --host 0.0.0.0
 
 sitebuild:
-	cd online-judge-site && npm rum build --prod --baseHref=/online-judge-site/
+	cd online-judge-site && npm rum build --configuration=prod --baseHref=/online-judge-site/
 
 sitedockerbuild:
 	# make sitebuild
