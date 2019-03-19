@@ -45,6 +45,7 @@ export class ContestComponent implements OnInit {
   exeTime: string;
   exitCodeLabel = '終了コード';
   exitCode: string;
+  canSubmit = false;
   testCode: string;
   testStdOutput: string;
   testStdError: string;
@@ -57,8 +58,7 @@ export class ContestComponent implements OnInit {
   yesLabel = 'はい';
   noLabel = 'いいえ';
   doneMessage = '提出しました';
-  error = false;
-  errorMessage = 'エラーが発生しています.管理者に問い合わせてください';
+  errorMessage = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -82,6 +82,7 @@ export class ContestComponent implements OnInit {
         this.testCode = data['testCode'];
       },
       (error) => {
+        console.log('error')
         console.log(error)
       });
   }
@@ -100,6 +101,11 @@ export class ContestComponent implements OnInit {
         this.stdError = data['stderr']
         this.exeTime = data['time'];
         this.exitCode = data['exit_code'];
+        this.canSubmit = this.exitCode == '0';
+        this.answerCodeMd = ''
+        + "\`\`\`java\n"
+        + this.answerCode
+        + "\n\`\`\`\n";
         this.spinner.detach();
       },
       (error) => {
@@ -107,6 +113,10 @@ export class ContestComponent implements OnInit {
         this.spinner.detach();
       }
     )
+  }
+
+  fixAns() {
+    this.canSubmit = false;
   }
 
   submit(confirm) {
@@ -137,6 +147,7 @@ export class ContestComponent implements OnInit {
         var body = {
           contest_id: this.contestId,
           contest_name: this.title || null,
+          question: this.question,
           answerer: this.cookieService.get('online-judge-site-user'),
           date_time: new Date(),
           answer_code: this.answerCode,
@@ -153,27 +164,25 @@ export class ContestComponent implements OnInit {
           (data) => {
             console.info(data)
             this.allCompleted = true;
-            this.answerCodeMd = ""
-            + "\`\`\`java\n"
-            + this.answerCode
-            + "\n\`\`\`\n";
+            this.errorMessage = '';
             this.spinner.detach();
           },
           (error) => {
-            this.error = true;
-            console.log('error')
-            console.log(error)
-            this.spinner.detach();
+            this.errorCallback(error)
           }
         )
       },
       (error) => {
-        this.error = true;
-        console.log('error')
-        console.log(error)
-        this.spinner.detach();
+        this.errorCallback(error)
       }
     )
+  }
+
+  private errorCallback (error) {
+    this.errorMessage = 'エラーが発生しています.管理者に問い合わせてください';
+    console.log('error')
+    console.log(error)
+    this.spinner.detach();
   }
 
   submitNo() {

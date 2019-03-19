@@ -8,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
   title = 'OnLine Judge System Beta';
   loginLabel = 'ログインする';
-  answerLabel = 'Javaの問題に解答する'
-  addLabel = 'Javaの問題を作成する';
-  refLabel = '成績を確認する';
+  contestsLabel = 'Javaの問題に解答する'
+  addcontestLabel = 'Javaの問題を作成する';
+  resultsLabel = '成績を確認する';
+  usersLabel = 'ユーザを確認する';
 
   constructor() { }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { ResultService } from '../../services/result.service';
 
@@ -16,7 +17,9 @@ export class ResultsComponent implements OnInit {
 
   resultListLabel = '成績一覧';
 
-  constructor(private resultService: ResultService) {
+  constructor(
+    private resultService: ResultService,
+    private router: Router) {
     this.columnDefs = [
       {
         headerName: '問題',
@@ -63,7 +66,6 @@ export class ResultsComponent implements OnInit {
 
   onSelectionChanged(event): void {
     var selectedRows = this.gridApi.getSelectedRows();
-    console.info(selectedRows);
+    this.router.navigateByUrl('/result/' + selectedRows[0]['_id'])
   }
-
 }

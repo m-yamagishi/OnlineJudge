@@ -1,0 +1,20 @@
+<app-layout>
+  <h4>{{contestNameLabel}}</h4>
+  <div>{{contestName}}</div>
+  <h4>{{answererLabel}}</h4>
+  <div>{{answerer}}</div>
+  <h4>{{dateTimeLabel}}</h4>
+  <div>{{dateTime}}</div>
+  <h4>{{questionLabel}}</h4>
+  <ngx-md [data]="question"></ngx-md>
+  <h4>{{answerCodeLabel}}</h4>
+  <ngx-md [data]="answerCodeMd"></ngx-md>
+  <h4>{{exeTimeLabel}}</h4>
+  <div>{{exeTime}}</div>
+  <h4>{{testStdOutLabel}}</h4>
+  <div>{{testStdOut}}</div>
+  <h4>{{testStdErrLabel}}</h4>
+  <div>{{testStdErr}}</div>
+  <h4>{{testExitCodeLabel}}</h4>
+  <div>{{testExitCode}}</div>
+</app-layout>

@@ -27,6 +27,7 @@ import 'prismjs/components/prism-python';
 import 'prismjs/components/prism-csharp';
 import 'prismjs/components/prism-javascript';
 import { ResultsComponent } from './components/results/results.component';
+import { ResultComponent } from './components/result/result.component';
 
 @NgModule({
   imports: [
@@ -55,7 +56,8 @@ import { ResultsComponent } from './components/results/results.component';
     ContestComponent,
     LoginComponent,
     UsersComponent,
-    ResultsComponent
+    ResultsComponent,
+    ResultComponent
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

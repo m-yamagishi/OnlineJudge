@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var objectID = require('mongodb').ObjectID;
+var ObjectID = require('mongodb').ObjectID;
 var mongo = require('./mongo.js');
 var COL = 'result';
 
