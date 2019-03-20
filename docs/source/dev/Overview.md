@@ -100,6 +100,10 @@
 
 - デザイン
 	- アラート https://ng-bootstrap.github.io/#/components/alert/examples#closeable
+	- AIデザイナーロゴ生成 https://logojoy.com/dashboard
+	- cssアニメーションサンプル http://photoshopvip.net/90427
+	- グラデーションサンプル https://webgradients.com/
+	- faviconの生成 https://ao-system.net/favicongenerator/
 
 - Junit 4.12
 	- 環境設定とコマンドラインでの実行手順 https://github.com/junit-team/junit4/wiki/Getting-started

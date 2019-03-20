@@ -115,7 +115,7 @@
               "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ],
             "assets": [
-              "src/favicon.ico",
+              "src/assets/favicon.ico",
               "src/assets"
             ]
           }

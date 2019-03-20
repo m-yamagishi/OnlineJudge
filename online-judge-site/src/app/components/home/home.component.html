@@ -1,20 +1,17 @@
-<app-layout>
-  <div style="text-align:center">
+<div style="text-align:center">
     <h1>
       {{title}}
     </h1>
-    <!-- <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="> -->
-    <img src="/assets/images/Architecture.png">
+</div>
+<div class="vartical-middle">
+  <div class="vartical-middle-child">
+    <img src="/assets/images/logo.png" />
   </div>
-  <br />
-  <br />
-  <br />
-  <br />
-  <ul>
-    <li><a routerLink="/login" routerLinkActive="active">{{loginLabel}}</a></li>
-    <li><a routerLink="/contests" routerLinkActive="active">{{contestsLabel}}</a></li>
-    <li><a routerLink="/addcontest" routerLinkActive="active">{{addcontestLabel}}</a></li>
-    <li><a routerLink="/results" routerLinkActive="active">{{resultsLabel}}</a></li>
-    <li><a routerLink="/users" routerLinkActive="active">{{usersLabel}}</a></li>
-  </ul>
-</app-layout>
+</div>
+<div class="wrapper">
+    <a class="fancy-button pop-onhover bg-gradient1" routerLink="/login" routerLinkActive="active"><span>{{loginLabel}}</span></a>
+    <a class="fancy-button pop-onhover bg-gradient2" routerLink="/contests" routerLinkActive="active"><span>{{contestsLabel}}</span></a>
+    <a class="fancy-button pop-onhover bg-gradient3" routerLink="/addcontest" routerLinkActive="active"><span>{{addcontestLabel}}</span></a>
+    <a class="fancy-button pop-onhover bg-gradient4" routerLink="/results" routerLinkActive="active"><span>{{resultsLabel}}</span></a>
+    <a class="fancy-button pop-onhover bg-gradient5" routerLink="/users" routerLinkActive="active"><span>{{usersLabel}}</span></a>
+</div>
