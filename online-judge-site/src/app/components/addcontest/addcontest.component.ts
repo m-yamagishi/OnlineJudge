@@ -43,7 +43,7 @@ export class AddcontestComponent implements OnInit {
   answerCode: string = 'public class Main {\n\tpublic static void main(String[] args) {\n\t\tSystem.out.println("Your answer!");\n\t}\n}';
   answerCodeMd: string;
   answerCodeCompleted = false;
-  standardInputLabel = '標準入力';
+  standardInputLabel = 'mainメソッドの引数';
   ansStandardInput: string;
   standardOutputLabel = '標準出力';
   ansStandardOutput: string;
@@ -189,7 +189,8 @@ export class AddcontestComponent implements OnInit {
         question: this.question,
         answerCode: this.answerCode,
         testCode: this.testCode,
-        questioner: this.cookieSrrvice.get('online-judge-site-user')
+        questioner: this.cookieSrrvice.get('online-judge-site-user'),
+        answer_count: 0
       }
       this.contestService.postContest(body).subscribe(
         (data) => {

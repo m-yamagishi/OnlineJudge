@@ -38,11 +38,11 @@ export class ContestComponent implements OnInit {
   questionLabel = '問題文';
   question: string;
   answerCodeLabel = '解答コード';
-  answerCodeDescription = '問題の答えを標準出力するプログラムを下記に記載してください.Mainクラスの定義,mainメソッドのシグネチャは変更しないでください.';
+  answerCodeDescription = '問題の答えを標準出力するプログラムを下記に記載してください.Mainクラスの定義,mainメソッドのシグネチャは変更しないでください.System.exit()などJVMを終了させるコードを実行するとテストが正常に実行されない場合があります.';
   answerCode: string = 'public class Main {\n\tpublic static void main(String[] args) {\n\t\tSystem.out.println("Your answer!");\n\t}\n}';
   answerCodeMd: string;
   answerCodeCompleted = false;
-  stdInputLabel = '標準入力';
+  stdInputLabel = 'mainメソッドの引数';
   stdInput: string;
   stdOutputLabel = '標準出力';
   stdOutput: string;
@@ -58,6 +58,7 @@ export class ContestComponent implements OnInit {
   testStdError: string;
   testExitCode: string;
   allCompleted = false;
+  answerCnt: number;
   exeLabel = '実行する';
   fixLabel = '修正する';
   submitLabel = '提出する';
@@ -87,6 +88,7 @@ export class ContestComponent implements OnInit {
         this.title = data['title'];
         this.question = data['question'];
         this.testCode = data['testCode'];
+        this.answerCnt = data['answer_count'] || 0;
       },
       (error) => {
         console.log('error')
@@ -173,6 +175,19 @@ export class ContestComponent implements OnInit {
             this.allCompleted = true;
             this.errorMessage = '';
             this.spinner.detach();
+
+            var body = {
+              answer_count: this.answerCnt + 1
+            };
+            this.contestService.putContest(this.contestId, body).subscribe(
+              (data) => {
+                console.info(data)
+              },
+              (error) => {
+                console.log('error')
+                console.log(error)
+              }
+            );
           },
           (error) => {
             this.errorCallback(error)

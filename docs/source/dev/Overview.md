@@ -69,6 +69,7 @@
 	- Router http://expressjs.com/ja/api.html
 	- APIをルーティングして処理別のjsをつくる https://qiita.com/leafia78/items/73cc7160d002a4989416
 	- サーバでCORSを許可 https://qiita.com/n0bisuke/items/b9c59a0b99b5851d1612
+	- PUT,DELETEでCORSを許可 http://neos21.hatenablog.com/entry/2018/05/12/080000
 
 - Angular
 	- チュートリアル https://angular.jp/tutorial

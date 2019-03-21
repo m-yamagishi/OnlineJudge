@@ -26,9 +26,9 @@ router.post('/', function (req, res) {
 	});
 });
 
+// curl http://localhost:3000/api/v1/contest/5c936df40481bed848b84b48 -X PUT -d "answer_count=2"
 router.put('/:id', function (req, res) {
-	console.log('request params is :', req.params.id);
-	collection(COL).findOneAndUpdate({_id: new ObjectID(req.params.id)}, req.body, {}, function (err, r) {
+	collection(COL).findOneAndUpdate({_id: new ObjectID(req.params.id)}, {$set: req.body}, {new: true}, function (err, r) {
 		res.send(r);
 	});
 });

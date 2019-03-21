@@ -44,6 +44,10 @@ export class ContestsComponent implements OnInit {
       //   field: 'question',
       //   width: 500
       // }
+      {
+        headerName: '解答回数',
+        field: 'answer_count'
+      },
     ];
     this.rowSelection = 'single';
   }
