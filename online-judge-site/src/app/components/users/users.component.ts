@@ -20,7 +20,11 @@ export class UsersComponent implements OnInit {
   constructor(private userService: UserService) {
     this.columnDefs = [
       {
-        headerName: 'ユーザ名',
+        headerName: 'ID',
+        field: '_id'
+      },
+      {
+        headerName: '名前',
         field: 'name'
       }, {
         headerName: 'パスワード',
@@ -28,11 +32,8 @@ export class UsersComponent implements OnInit {
       }, {
         headerName: 'ロール',
         field: 'role',
-        editable: true,
-      }, {
-        headerName: 'ID',
-        field: '_id'
-      }
+        // editable: true,
+      },
     ];
     // this.rowSelection = 'multiple';
   }
@@ -44,6 +45,13 @@ export class UsersComponent implements OnInit {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     this.getUsers();
+
+    this.gridApi.sizeColumnsToFit();
+    window.addEventListener('resize', function() {
+      setTimeout(function() {
+        params.api.sizeColumnsToFit();
+      })
+    })
   }
 
   getUsers() {

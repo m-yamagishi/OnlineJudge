@@ -127,7 +127,7 @@ h4 {
 
 /* General */
 .wrapper {
-  margin: 5% auto;
+  // margin: 5% auto;
   text-align: center;
   transform-style: perserve-3d;
   perspecive: 800px;
@@ -241,4 +241,8 @@ a {
       }
     }
   }
+}
+
+.capitalize {
+  text-transform: capitalize;
 }

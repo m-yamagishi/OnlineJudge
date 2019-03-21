@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import * as moment from 'moment';
+
 import { ResultService } from '../../services/result.service';
 
 @Component({
@@ -29,7 +31,10 @@ export class ResultsComponent implements OnInit {
         field: 'answerer'
       }, {
         headerName: '提出日時',
-        field: 'date_time'
+        field: 'date_time',
+        cellRenderer: function(params) {
+          return moment(params.value).format('YYYY/MM/DD HH:mm:ss');
+        },
       },{
         headerName: '結果①',
         field: 'test_exit_code',
@@ -49,6 +54,13 @@ export class ResultsComponent implements OnInit {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     this.getResults();
+
+    this.gridApi.sizeColumnsToFit();
+    window.addEventListener('resize', function() {
+      setTimeout(function() {
+        params.api.sizeColumnsToFit();
+      })
+    })
   }
 
   getResults() {

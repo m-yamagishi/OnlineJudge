@@ -2,6 +2,7 @@
   <h2>{{userListLabel}}</h2>
   <ag-grid-angular
     class="ag-theme-material user-list"
+    enableFilter=true
     [rowData]="rowData"
     [columnDefs]="columnDefs"
     (gridReady)="onGridReady($event)">

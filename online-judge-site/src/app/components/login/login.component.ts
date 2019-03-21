@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
     this.userNameError = this.passwordError = false;
     this.cookieService.set('online-judge-site-user', this.userName);
     this.cookieService.set('online-judge-site-role', role);
-    this.router.navigateByUrl('home');
+    this.router.navigateByUrl('contests');
   };
 
   private wrongPassword = function () {

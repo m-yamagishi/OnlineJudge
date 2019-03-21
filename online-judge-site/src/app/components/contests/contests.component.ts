@@ -10,11 +10,11 @@ import { ContestService } from '../../services/contest.service';
   styleUrls: ['./contests.component.scss']
 })
 export class ContestsComponent implements OnInit {
-  public gridApi;
-  public gridColumnApi;
-  public columnDefs;
-  public rowSelection;
-  public rowData;
+  private gridApi;
+  private gridColumnApi;
+  private columnDefs;
+  private rowSelection;
+  private rowData;
 
   contestListLabel = '問題一覧'
   addLabel = '問題を追加する'
@@ -23,24 +23,27 @@ export class ContestsComponent implements OnInit {
     private contestService: ContestService,
     private router: Router) {
     this.columnDefs = [
-      { 
+      {
+        headerName: 'ID',
+        field: '_id',
+      },
+      {
         headerName: 'タイトル',
         field: 'title',
         // cellRenderer: function (params) {
         //   return '<a href="/contest/' + params.data._id + '">' + params.value + '</a>'
         //   return '<a routerLink="../contest/' + params.data._id + '" routerLinkActive="active">' + params.value + '</a>'
         // }
-      },{
+      },
+      {
         headerName: '出題者',
         field: 'questioner'
-      },{
-          headerName: 'ID',
-          field: '_id'
-      },{
-        headerName: '内容',
-        field: 'question',
-        width: 500
-      }
+      },
+      // {
+      //   headerName: '内容',
+      //   field: 'question',
+      //   width: 500
+      // }
     ];
     this.rowSelection = 'single';
   }
@@ -52,6 +55,13 @@ export class ContestsComponent implements OnInit {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     this.getContests();
+
+    this.gridApi.sizeColumnsToFit();
+    window.addEventListener('resize', function() {
+      setTimeout(function() {
+        params.api.sizeColumnsToFit();
+      })
+    })
   }
 
   getContests(): void {
@@ -75,4 +85,8 @@ export class ContestsComponent implements OnInit {
     // });
   }
 
+  add(){
+    console.info('add')
+    this.router.navigateByUrl('addcontest');
+  }
 }

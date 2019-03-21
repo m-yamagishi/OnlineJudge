@@ -1,14 +1,17 @@
 <app-layout>
-	<h2>{{contestListLabel}}</h2>
-	<div class="text-right">
-		<a routerLink="../addcontest" routerLinkActive="active">{{addLabel}}</a>
-	</div>
-	<ag-grid-angular
-		class="ag-theme-material contest-list"
-		[rowData]="rowData"
-		[columnDefs]="columnDefs"
-		[rowSelection]="rowSelection"
-		(selectionChanged)="onSelectionChanged($event)"
-		(gridReady)="onGridReady($event)">
-	</ag-grid-angular>
+  <h2>{{contestListLabel}}</h2>
+  <ag-grid-angular
+	class="ag-theme-material contest-list"
+	enableFilter=true
+	[rowData]="rowData"
+	[columnDefs]="columnDefs"
+	[rowSelection]="rowSelection"
+	(selectionChanged)="onSelectionChanged($event)"
+	(gridReady)="onGridReady($event)">
+  </ag-grid-angular>
+  <div class="fixed-position">
+    <button mat-fab color="primary" class="no-focus" (click)="add()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
 </app-layout>

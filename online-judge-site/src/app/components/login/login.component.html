@@ -1,21 +1,32 @@
 <app-layout>
-  <div class="login-form">
-    <input class="form-control" placeholder="{{userNameLabel}}" [(ngModel)]="userName" (change)="changeUserName()" [readonly]="loginCompleted">
-    <div class="alert" [hidden]="userNameError"></div>
-    <ngb-alert class='alert' type="danger" [dismissible]="false" [hidden]="!userNameError">
-      {{userNameErrorMessage}}
-    </ngb-alert>
-    <input type="password" class="form-control" placeholder="{{passwordLabel}}" [(ngModel)]="password" (change)="changePassword()" [readonly]="loginCompleted">
-    <div class="alert" [hidden]="passwordError"></div>
-    <ngb-alert class='alert' type="danger" [dismissible]="false" [hidden]="!passwordError">
-      {{passwordErrorMessage}}
-    </ngb-alert>
-    <div class="text-center">
-      <button class="btn btn-primary btn-lg" (click)="login()" [disabled]="loginCompleted">{{loginLabel}}</button>
-      <button class="btn btn-outline-primary btn-lg" (click)='signin()' [disabled]="loginCompleted">{{signinLabel}}</button>
+  <div class="login-form container">
+    <div class="group">
+      <input type="text" required [(ngModel)]="userName" (change)="changeUserName()" [readonly]="loginCompleted">
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label>Name</label>
+      <div class="alert" [hidden]="userNameError"></div>
+      <ngb-alert class='alert' type="danger" [dismissible]="false" [hidden]="!userNameError">
+        {{userNameErrorMessage}}
+      </ngb-alert>
     </div>
-    <ngb-alert type="info" [dismissible]="false" [hidden]="!loginCompleted">
-      {{doneMessage}}
-    </ngb-alert>
+    <div class="group">
+      <input type="password" required [(ngModel)]="password" (change)="changePassword()" [readonly]="loginCompleted">
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label>Password</label>
+      <div class="alert" [hidden]="passwordError"></div>
+      <ngb-alert class='alert' type="danger" [dismissible]="false" [hidden]="!passwordError">
+        {{passwordErrorMessage}}
+      </ngb-alert>
+      <div>
+        <button class="btn btn-primary btn-lg" (click)="login()" [disabled]="loginCompleted">{{loginLabel}}</button>
+        <button class="btn btn-outline-primary btn-lg" (click)='signin()'
+          [disabled]="loginCompleted">{{signinLabel}}</button>
+      </div>
+      <ngb-alert type="info" [dismissible]="false" [hidden]="!loginCompleted">
+        {{doneMessage}}
+      </ngb-alert>
+    </div>
   </div>
 </app-layout>

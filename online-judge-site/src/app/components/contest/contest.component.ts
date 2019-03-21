@@ -18,7 +18,14 @@ import { ResultService } from '../../services/result.service';
   styleUrls: ['./contest.component.scss']
 })
 export class ContestComponent implements OnInit {
-  options = { theme: 'vs-dark', language: 'java' }
+  options = {
+    theme: 'vs-dark',
+    language: 'java',
+    fontSize: 16,
+    // renderWhitespace: 'all'
+    tabCompletion: true,
+    scrollBeyondLastLine: false,
+  }
   spinner = this.overlay.create({
     hasBackdrop: true,
     positionStrategy: this.overlay

@@ -1,19 +1,20 @@
-.textbox {
-	width: 100%;
-	resize: vertical;
-}
-
 .question-area {
-	height: 200px;
+	border: solid 0.5px #f5f2f0;
 }
 
-.result-area {
-	background: lightgray
+.text-display-area {
+	background: #f5f2f0;
+	min-height: 25px;
 }
 
 .code-area {
-	height: 250px;
+	height: 400px;
 	overflow: scroll;
+}
+
+.textbox {
+	width: 100%;
+	resize: vertical;
 }
 
 .confirm-modal {

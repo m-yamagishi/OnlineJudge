@@ -7,13 +7,11 @@
 </ng-template>
 <app-layout>
   <h2>{{title}}</h2>
+  <div class="question-area">
+    <ngx-md [data]="question"></ngx-md>
+  </div>
   <br />
   <br />
-  <h2>{{questionLabel}}</h2>
-  <ngx-md [data]="question"></ngx-md>
-  <br />
-  <br />
-  <h2>{{answerCodeLabel}}</h2>
   <div>{{answerCodeDescription}}</div>
   <ngx-monaco-editor class="code-area" [options]="options" [(ngModel)]="answerCode" [hidden]="allCompleted || canSubmit"></ngx-monaco-editor>
   <div class="code-area" [hidden]="!(allCompleted || canSubmit)">
@@ -23,24 +21,24 @@
   <h5>{{stdInputLabel}}</h5>
   <textarea class="textbox" [(ngModel)]="stdInput" [readonly]="allCompleted || canSubmit"></textarea>
   <div class="text-right">
-    <button type="button" class="btn btn-secondary" (click)="exec()" [disabled]="canSubmit || allCompleted">{{exeLabel}}</button>
-    <button type="button" class="btn btn-secondary" (click)="fixAns()" [disabled]="!canSubmit || allCompleted">{{fixLabel}}</button>
+    <button type="button" class="btn btn-lg btn-secondary" (click)="exec()" [disabled]="canSubmit || allCompleted">{{exeLabel}}</button>
+    <button type="button" class="btn btn-lg btn-secondary" (click)="fixAns()" [disabled]="!canSubmit || allCompleted">{{fixLabel}}</button>
   </div>
   <br />
   <h5>{{stdOutputLabel}}</h5>
-  <pre><div class="result-area">{{stdOutput}}</div></pre>
+  <pre><div class="text-display-area">{{stdOutput}}</div></pre>
   <br />
   <h5>{{stdErrorLabel}}</h5>
-  <pre><div class="result-area">{{stdError}}</div></pre>
+  <pre><div class="text-display-area">{{stdError}}</div></pre>
   <br />
   <h5>{{exeTimeLabel}}</h5>
-  <div class="result-area">{{exeTime}}</div>
+  <div class="text-display-area">{{exeTime}}</div>
   <br />
   <h5>{{exitCodeLabel}}</h5>
-  <div class="result-area">{{exitCode}}</div>
+  <div class="text-display-area">{{exitCode}}</div>
   <br />
   <div class="text-right">
-    <button type="button" class="btn btn-primary" (click)="submit(confirm)" [disabled]="allCompleted || !canSubmit">{{submitLabel}}</button>
+    <button type="button" class="btn btn-lg btn-primary" (click)="submit(confirm)" [disabled]="allCompleted || !canSubmit">{{submitLabel}}</button>
   </div>
   <ngb-alert type="alert" [dismissible]="false" [hidden]="!errorMessage">
     {{errorMessage}}

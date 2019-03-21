@@ -66,7 +66,8 @@ sitesave:
 	cd online-judge-site && npm install --save ngx-md
 	cd online-judge-site && npm install --save @ng-bootstrap/ng-bootstrap
 	cd online-judge-site && npm install --save ngx-cookie-service
-	cd online-judge-site && ng add @angular/material
+	cd online-judge-site && npm install --save @angular/material @angular/cdk @angular/animations
+	cd online-judge-site && npm install --save moment
 
 siteserve:
 	cd online-judge-site && ng serve --port 4649 --host 0.0.0.0

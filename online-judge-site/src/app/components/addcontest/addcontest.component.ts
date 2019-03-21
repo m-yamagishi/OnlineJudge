@@ -17,7 +17,13 @@ import { ContestService } from '../../services/contest.service';
   styleUrls: ['./addcontest.component.scss']
 })
 export class AddcontestComponent implements OnInit {
-  options = { theme: 'vs-dark', language: 'java' }
+  options = {
+    theme: 'vs-dark',
+    language: 'java',
+    fontSize: 16,
+    tabCompletion: true,
+    scrollBeyondLastLine: false,
+  }
   spinner = this.overlay.create({
     hasBackdrop: true,
     positionStrategy: this.overlay
@@ -84,7 +90,7 @@ export class AddcontestComponent implements OnInit {
   conformLabel = '問題を取り消してよろしいですか？';
   yesLabel = 'はい';
   noLabel = 'いいえ';
-  errorMessage:string = '';
+  errorMessage: string = '';
   closeLabel = '閉じる';
   allCompleted = false;
   doneMessage = '登録が完了しました';
@@ -136,8 +142,8 @@ export class AddcontestComponent implements OnInit {
   }
 
   runTest(error) {
-    if(!this.answerCodeCompleted) this.errorMessage = '解答コードの実行を完了させてください。\n';
-    if(this.errorMessage.length > 0) {
+    if (!this.answerCodeCompleted) this.errorMessage = '解答コードの実行を完了させてください。\n';
+    if (this.errorMessage.length > 0) {
       this.openerromodal(error);
     } else {
       this.spinner.attach(new ComponentPortal(MatSpinner));
@@ -152,16 +158,16 @@ export class AddcontestComponent implements OnInit {
           this.testExitCode = data['exit_code'];
           this.testCodeCompleted = this.testExitCode == '0';
           this.testCodeMd = ""
-          + "\`\`\`java\n"
-          + this.testCode
-          + "\n\`\`\`\n";
+            + "\`\`\`java\n"
+            + this.testCode
+            + "\n\`\`\`\n";
           this.spinner.detach();
         },
         (error) => {
           console.log(error);
           this.spinner.detach();
         })
-      }
+    }
   }
 
   fixTest() {
@@ -169,11 +175,11 @@ export class AddcontestComponent implements OnInit {
   }
 
   addContest(error) {
-    if(this.packageName.length < 1) this.errorMessage += 'タイトルを入力してください。\n';
-    if(this.question.length < 1) this.errorMessage += '問題文を入力してください。\n';
-    if(!this.answerCodeCompleted) this.errorMessage += '解答コードの実行を完了させてください。\n';
-    if(!this.testCodeCompleted) this.errorMessage += 'テストコードの実行を完了させてください。\n';
-    if(this.errorMessage.length > 0) {
+    if (this.packageName.length < 1) this.errorMessage += 'タイトルを入力してください。\n';
+    if (this.question.length < 1) this.errorMessage += '問題文を入力してください。\n';
+    if (!this.answerCodeCompleted) this.errorMessage += '解答コードの実行を完了させてください。\n';
+    if (!this.testCodeCompleted) this.errorMessage += 'テストコードの実行を完了させてください。\n';
+    if (this.errorMessage.length > 0) {
       this.openerromodal(error);
     } else {
       this.spinner.attach(new ComponentPortal(MatSpinner));
@@ -198,7 +204,7 @@ export class AddcontestComponent implements OnInit {
   }
 
   private openerromodal(error) {
-    this.modalService.open(error, {centered: true, ariaLabelledBy: 'modal-basic-title'}).result.then(
+    this.modalService.open(error, { centered: true, ariaLabelledBy: 'modal-basic-title' }).result.then(
       (result) => {
         this.errorMessage = '';
         console.log(`Closed with: ${result}`);
@@ -210,7 +216,7 @@ export class AddcontestComponent implements OnInit {
   }
 
   rmContest(confirm) {
-    this.modalService.open(confirm, {centered:true, ariaLabelledBy: 'modal-basic-title'}).result.then(
+    this.modalService.open(confirm, { centered: true, ariaLabelledBy: 'modal-basic-title' }).result.then(
       (result) => {
         console.log(`Closed with: ${result}`);
       },
@@ -225,9 +231,16 @@ export class AddcontestComponent implements OnInit {
     this.answerCode = undefined;
     this.answerCodeMd = undefined;
     this.ansStandardInput = undefined;
+    this.ansStandardOutput = undefined;
+    this.ansStandardError = undefined;
+    this.ansExeTime = undefined;
+    this.ansExitCode = undefined;
     this.answerCodeCompleted = false;
     this.testCode = undefined;
     this.testCodeMd = undefined;
+    this.testStandardOutput = undefined;
+    this.testStandardError = undefined;
+    this.testExitCode = undefined;
     this.testCodeCompleted = false;
     this.modalService.dismissAll();
   }
@@ -242,7 +255,7 @@ export class AddcontestComponent implements OnInit {
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
       return 'by clicking on a backdrop';
     } else {
-      return  `with: ${reason}`;
+      return `with: ${reason}`;
     }
   }
 }

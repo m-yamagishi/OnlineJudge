@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
 	homeLabel = 'ホーム';
 	contestsLabel = '問題一覧';
 	addContestLabel = '問題登録';
-	resultLabel = '成績確認';
+	resultLabel = '成績一覧';
 	usersLabel = 'ユーザ一覧';
 	user: string;
 	role: string;
@@ -40,6 +40,7 @@ export class HeaderComponent implements OnInit {
 
 	logout() {
 		this.cookieService.deleteAll();
-		location.reload();
+		// location.reload();
+		this.router.navigateByUrl('home');
 	}
 }

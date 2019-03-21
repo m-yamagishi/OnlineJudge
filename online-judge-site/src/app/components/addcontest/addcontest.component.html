@@ -26,7 +26,7 @@
     <ngx-md [data]="question"></ngx-md>
   </div>
   <div class="text-right">
-    <button type="button" class="btn btn-secondary" (click)="preview()">{{previwLabel}}</button>
+    <button type="button" class="btn btn-lg btn-secondary" (click)="preview()">{{previwLabel}}</button>
   </div>
   <br />
   <br />
@@ -40,8 +40,8 @@
   <h5>{{standardInputLabel}}</h5>
   <textarea class="textbox" [(ngModel)]="ansStandardInput" [readonly]="answerCodeCompleted || allCompleted"></textarea>
   <div class="text-right">
-    <button type="button" class="btn btn-secondary" (click)="runAns()" [disabled]="answerCodeCompleted || allCompleted">{{exeLabel}}</button>
-    <button type="button" class="btn btn-secondary" (click)="fixAns()" [disabled]="!answerCodeCompleted || allCompleted">{{fixLabel}}</button>
+    <button type="button" class="btn btn-lg btn-secondary" (click)="runAns()" [disabled]="answerCodeCompleted || allCompleted">{{exeLabel}}</button>
+    <button type="button" class="btn btn-lg btn-secondary" (click)="fixAns()" [disabled]="!answerCodeCompleted || allCompleted">{{fixLabel}}</button>
   </div>
   <br />
   <h5>{{standardOutputLabel}}</h5>
@@ -58,13 +58,13 @@
   <br />
   <h2>{{testCodeTitle}}</h2>
   <div>{{testCodeDescription}}</div>
-  <ngx-monaco-editor class="code-area" [options]="options" [(ngModel)]="testCode" [hidden]="testCodeCompleted"></ngx-monaco-editor>
-  <div class="code-area" [hidden]="!testCodeCompleted">
+  <ngx-monaco-editor class="testcode-area" [options]="options" [(ngModel)]="testCode" [hidden]="testCodeCompleted"></ngx-monaco-editor>
+  <div class="testcode-area" [hidden]="!testCodeCompleted">
     <ngx-md [data]="testCodeMd"></ngx-md>
   </div>
   <div class="text-right">
-    <button type="button" class="btn btn-secondary" (click)="runTest(error)" [disabled]="testCodeCompleted || allCompleted">{{exeLabel}}</button>
-    <button type="button" class="btn btn-secondary" (click)="fixTest()" [disabled]="!testCodeCompleted || allCompleted">{{fixLabel}}</button>
+    <button type="button" class="btn btn-lg btn-secondary" (click)="runTest(error)" [disabled]="testCodeCompleted || allCompleted">{{exeLabel}}</button>
+    <button type="button" class="btn btn-lg btn-secondary" (click)="fixTest()" [disabled]="!testCodeCompleted || allCompleted">{{fixLabel}}</button>
   </div>
   <h5>{{standardOutputLabel}}</h5>
   <pre><div class="result-area">{{testStandardOutput}}</div></pre>
@@ -77,8 +77,8 @@
   <br />
   <br />
   <div class="text-right">
-    <button type="button" class="btn btn-primary" (click)="addContest(error)" [disabled]="allCompleted">{{registerLabel}}</button>
-    <button type="button" class="btn btn-danger" (click)="rmContest(confirm)" [disabled]="allCompleted">{{removeLabel}}</button>
+    <button type="button" class="btn btn-lg btn-primary" (click)="addContest(error)" [disabled]="allCompleted">{{registerLabel}}</button>
+    <button type="button" class="btn btn-lg btn-danger" (click)="rmContest(confirm)" [disabled]="allCompleted">{{removeLabel}}</button>
   </div>
   <ngb-alert type="info" [dismissible]="false" [hidden]="!allCompleted">
     {{doneMessage}}

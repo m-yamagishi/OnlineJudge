@@ -74,6 +74,7 @@
 	- チュートリアル https://angular.jp/tutorial
 	- コンポーネントの作成 `ng generate component heroes`
 	- ag-grid https://qiita.com/minase_tetsuya/items/0bf6b9f9376e99b29488
+		- ウィンドウサイズに合わせてリサイズ https://www.ag-grid.com/javascript-grid-responsiveness/
 	- サーブした時に同じネットワークの他のデバイスからアクセス可能にする https://qiita.com/agajo/items/f0474610a233d6844dda
 	- チュートリアル後にはhttpの接続がInMemoryDataServiceになっているので通信できない https://www.virtual-surfer.com/entry/2018/06/06/190000
 	- Angularとexpressのhttp通信は,クライアントから`Content-Type:application/json`を指定し,サーバのパーサは`bodyParser.json()`を使う https://github.com/angular/angular/issues/19535
@@ -87,6 +88,9 @@
 	- cookieに保存と取得 https://qiita.com/second113/items/754cf6b63bfe89702dce
 	- Guardの生成 https://qiita.com/daiki7nohe/items/ddeebad790ae4127d9a7
 	- Guardの実装 https://kuluna.github.io/blog/post/20170920/
+	- angular materialの利用 https://material.angular.io/guide/getting-started
+	- mat-iconの利用 https://qiita.com/blajir/items/9540556d7467044ef751
+	- momentの利用 https://medium.com/@elbaumpj/how-to-use-moment-js-in-angular-projects-5bec9157c56a
 
 - node.js
 	- fs ファイルコピー https://qiita.com/tadnakam/items/6b6e0da5bb05c86bd573
@@ -102,6 +106,10 @@
 	- アラート https://ng-bootstrap.github.io/#/components/alert/examples#closeable
 	- AIデザイナーロゴ生成 https://logojoy.com/dashboard
 	- cssアニメーションサンプル http://photoshopvip.net/90427
+	- マテリアルアイコン https://material.io/tools/icons/?style=baseline
+	- マテリアルデザインサンプル https://webdesign-trends.net/entry/152
+		- ログイン
+	- fabボタン https://material.angular.io/components/button/examples
 	- グラデーションサンプル https://webgradients.com/
 	- faviconの生成 https://ao-system.net/favicongenerator/
 
