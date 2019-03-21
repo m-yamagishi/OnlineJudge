@@ -26,10 +26,12 @@ export class UsersComponent implements OnInit {
       {
         headerName: '名前',
         field: 'name'
-      }, {
-        headerName: 'パスワード',
-        field: 'password'
-      }, {
+      },
+      // {
+      //   headerName: 'パスワード',
+      //   field: 'password'
+      // },
+      {
         headerName: 'ロール',
         field: 'role',
         // editable: true,
